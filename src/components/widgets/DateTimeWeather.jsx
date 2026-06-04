@@ -38,16 +38,21 @@ export default function DateTimeWeather() {
     navigator.geolocation.getCurrentPosition(async (pos) => {
       try {
         const { latitude, longitude } = pos.coords
+        console.log('Location:', latitude, longitude)
         const key = import.meta.env.VITE_OPENWEATHER_KEY
+        console.log('Key:', key)
         const res = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=imperial`
         )
         const data = await res.json()
+        console.log('Weather data:', data)
         if (data.main) setWeather(data)
       } catch (e) {
-        console.log('Weather unavailable')
+        console.log('Weather error:', e)
       }
-    }, () => {})
+    }, (err) => {
+      console.log('Location error:', err)
+    })
   }, [])
 
   const formatDate = (date) => date.toLocaleDateString('en-US', {
