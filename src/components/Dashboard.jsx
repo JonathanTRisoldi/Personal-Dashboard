@@ -121,32 +121,32 @@ export default function Dashboard({ session }) {
             gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
             gap: '16px'
           }}>
-            <Widget title="Quick Tasks">
+            <Widget title="Quick Tasks" defaultOpen={!isMobile}>
               <Tasks session={session} />
             </Widget>
-            <Widget title="Quick Notes">
+            <Widget title="Quick Notes" defaultOpen={!isMobile}>
               <Notes session={session} />
             </Widget>
           </div>
 
-          <Widget title="Projects">
+          <Widget title="Projects" defaultOpen={!isMobile}>
             <Projects session={session} />
           </Widget>
 
-          <Widget title="Daily Journal">
+          <Widget title="Daily Journal" defaultOpen={!isMobile}>
             <Journal session={session} />
           </Widget>
         </div>
 
         {/* Right Sidebar */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: isMobile ? 'static' : 'sticky', top: '24px' }}>
-          <Widget title="Spotify">
+          <Widget title="Spotify" defaultOpen={!isMobile}>
             <Spotify />
           </Widget>
-          <Widget title="Google Calendar">
+          <Widget title="Google Calendar" defaultOpen={!isMobile}>
             <GoogleCalendar />
           </Widget>
-          <Widget title="News Feed">
+          <Widget title="News Feed" defaultOpen={!isMobile}>
             <RSSFeed />
           </Widget>
         </div>
