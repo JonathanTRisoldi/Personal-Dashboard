@@ -66,9 +66,9 @@ export default function DateTimeWeather() {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
+      gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1fr 1fr 1fr',
       alignItems: 'center',
-      gap: '24px'
+      gap: '16px'
     }}>
       {/* Time & Date */}
       <div>
