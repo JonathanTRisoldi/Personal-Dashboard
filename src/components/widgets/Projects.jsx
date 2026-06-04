@@ -175,7 +175,7 @@ export default function Projects({ session }) {
       ) : projects.length === 0 ? (
         <p style={{ color: '#888', fontSize: '14px' }}>No projects yet!</p>
       ) : (
-        <div style={{ display: 'flex', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: window.innerWidth < 768 ? 'column' : 'row', gap: '16px' }}>
           <div style={{ flex: 1 }}>
             {projects.map(project => {
               const progress = getProgress(project.project_steps)
