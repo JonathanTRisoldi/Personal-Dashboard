@@ -34,7 +34,7 @@ export default function Spotify() {
   }, [token])
 
   const login = () => {
-    const clientId = '884dfef656d64370a9cca741b21051fc'
+    const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID
     const redirectUri = encodeURIComponent(window.location.origin)
     const url = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}&scope=${encodeURIComponent(SCOPES)}`
     window.location.href = url
