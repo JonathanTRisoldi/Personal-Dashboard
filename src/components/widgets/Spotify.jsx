@@ -36,7 +36,7 @@ export default function Spotify() {
 
   const exchangeToken = async (code) => {
     const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID
-    const redirectUri = 'https://personal-dashboard-mocha-seven.vercel.app'
+    const redirectUri = import.meta.env.VITE_REDIRECT_URI
     const codeVerifier = localStorage.getItem('spotify_code_verifier')
 
     const res = await fetch('https://accounts.spotify.com/api/token', {
@@ -59,8 +59,8 @@ export default function Spotify() {
 
   const login = async () => {
     const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID
-    const redirectUri = 'https://personal-dashboard-mocha-seven.vercel.app'
-    
+    const redirectUri = import.meta.env.VITE_REDIRECT_URI
+
     const codeVerifier = generateCodeVerifier()
     const codeChallenge = await generateCodeChallenge(codeVerifier)
     localStorage.setItem('spotify_code_verifier', codeVerifier)

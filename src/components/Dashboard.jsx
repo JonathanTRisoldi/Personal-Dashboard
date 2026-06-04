@@ -69,7 +69,7 @@ export default function Dashboard({ session }) {
               </div>
             ) : (
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <h1 style={{ color: '#389300', fontSize: '24px' }}>
+                <h1 style={{ color: '#ffffff', fontSize: '24px' }}>
                   {getGreeting()}, {displayName || 'Friend'}!
                 </h1>
                 <button onClick={startEditingName} style={{ background: 'none', border: 'none', color: '#6c63ff', cursor: 'pointer', fontSize: '16px' }}>✎</button>
