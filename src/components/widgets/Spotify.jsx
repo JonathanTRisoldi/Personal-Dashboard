@@ -66,6 +66,8 @@ export default function Spotify() {
     localStorage.setItem('spotify_code_verifier', codeVerifier)
 
     const url = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(SCOPES)}&code_challenge_method=S256&code_challenge=${codeChallenge}`
+    console.log('Redirect URI:', redirectUri)
+    console.log('Full URL:', url)
     window.location.href = url
   }
 
