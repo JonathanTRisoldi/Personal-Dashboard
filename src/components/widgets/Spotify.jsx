@@ -13,16 +13,16 @@ export default function Spotify() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const hash = window.location.hash
-    if (hash) {
-      const params = new URLSearchParams(hash.substring(1))
-      const accessToken = params.get('access_token')
-      if (accessToken) {
-        localStorage.setItem('spotify_token', accessToken)
-        setToken(accessToken)
-        window.location.hash = ''
-      }
+    const params = new URLSearchParams(window.location.search)
+    const code = params.get('code')
+    if (code) {
+      exchangeToken(code)
+      window.history.replaceState({}, document.title, window.location.pathname)
     }
+  }, [])
+
+  useEffect(() => {
+    if (token) fetchCurrentTrack()
   }, [])
 
   useEffect(() => {
