@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import { supabase } from '../supabase'
 import DateTimeWeather from './widgets/DateTimeWeather'
@@ -102,61 +101,6 @@ const sensors = useSensors(
     }
   }
 
-  const leftWidgets = {
-    'datetime': (
-      <Widget key="datetime" title="Date, Time & Weather">
-        <DateTimeWeather />
-      </Widget>
-    ),
-    'tasks-notes': (
-      <DraggableWidget key="tasks-notes" id="tasks-notes" title="Tasks & Notes" defaultOpen={!isMobile}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px' }}>
-          <div>
-            <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Tasks</h3>
-            <Tasks session={session} />
-          </div>
-          <div>
-            <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Notes</h3>
-            <Notes session={session} />
-          </div>
-        </div>
-      </DraggableWidget>
-    ),
-    'projects': (
-      <DraggableWidget key="projects" id="projects" title="Projects" defaultOpen={!isMobile}>
-        <Projects session={session} />
-      </DraggableWidget>
-    ),
-    'journal': (
-      <DraggableWidget key="journal" id="journal" title="Daily Journal" defaultOpen={!isMobile}>
-        <Journal session={session} />
-      </DraggableWidget>
-    ),
-    'habits': (
-      <DraggableWidget key="habits" id="habits" title="Habit Tracker" defaultOpen={!isMobile}>
-        <HabitTracker session={session} />
-      </DraggableWidget>
-    )
-  }
-
-  const rightWidgets = {
-    'spotify': (
-      <DraggableWidget key="spotify" id="spotify" title="Spotify" defaultOpen={!isMobile}>
-        <Spotify />
-      </DraggableWidget>
-    ),
-    'calendar': (
-      <DraggableWidget key="calendar" id="calendar" title="Google Calendar" defaultOpen={!isMobile}>
-        <GoogleCalendar />
-      </DraggableWidget>
-    ),
-    'news': (
-      <DraggableWidget key="news" id="news" title="News Feed" defaultOpen={!isMobile}>
-        <RSSFeed />
-      </DraggableWidget>
-    )
-  }
-
   return (
     <div style={{ maxWidth: '1600px', margin: '0 auto', padding: isMobile ? '12px' : '24px' }}>
 
@@ -226,42 +170,94 @@ const sensors = useSensors(
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {leftWidgets['datetime']}
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleLeftDragEnd}>
-            <SortableContext items={leftOrder.filter(id => id !== 'datetime')} strategy={verticalListSortingStrategy}>
-                {leftOrder.filter(id => id !== 'datetime').map((id, index) => {
-                    const filteredOrder = leftOrder.filter(i => i !== 'datetime')
-                    return React.cloneElement(leftWidgets[id], {
-                        isMobile,
-                        isFirst: index === 0,
-                        isLast: index === filteredOrder.length - 1,
-                        onMoveUp: () => setLeftOrder(prev => {
-                            const filtered = prev.filter(i => i !== 'datetime')
-                            const newOrder = arrayMove(filtered, index, index - 1)
-                            return ['datetime', ...newOrder]
-                        }),
-                        onMoveDown: () => setLeftOrder(prev => {
-                            const filtered = prev.filter(i => i !== 'datetime')
-                            const newOrder = arrayMove(filtered, index, index + 1)
-                            return ['datetime', ...newOrder]
-                        })
-                    })
-                })}
-            </SortableContext>
-          </DndContext>
+  <SortableContext items={leftOrder.filter(id => id !== 'datetime')} strategy={verticalListSortingStrategy}>
+    {leftOrder.filter(id => id !== 'datetime').map((id, index) => {
+      const filteredOrder = leftOrder.filter(i => i !== 'datetime')
+      const widgetProps = {
+        isMobile,
+        isFirst: index === 0,
+        isLast: index === filteredOrder.length - 1,
+        onMoveUp: () => setLeftOrder(prev => {
+          const filtered = prev.filter(i => i !== 'datetime')
+          const newOrder = arrayMove(filtered, index, index - 1)
+          return ['datetime', ...newOrder]
+        }),
+        onMoveDown: () => setLeftOrder(prev => {
+          const filtered = prev.filter(i => i !== 'datetime')
+          const newOrder = arrayMove(filtered, index, index + 1)
+          return ['datetime', ...newOrder]
+        })
+      }
+      const widgets = {
+        'tasks-notes': (
+          <DraggableWidget key="tasks-notes" id="tasks-notes" title="Tasks & Notes" defaultOpen={!isMobile} {...widgetProps}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px' }}>
+              <div>
+                <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Tasks</h3>
+                <Tasks session={session} />
+              </div>
+              <div>
+                <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Notes</h3>
+                <Notes session={session} />
+              </div>
+            </div>
+          </DraggableWidget>
+        ),
+        'projects': (
+          <DraggableWidget key="projects" id="projects" title="Projects" defaultOpen={!isMobile} {...widgetProps}>
+            <Projects session={session} />
+          </DraggableWidget>
+        ),
+        'journal': (
+          <DraggableWidget key="journal" id="journal" title="Daily Journal" defaultOpen={!isMobile} {...widgetProps}>
+            <Journal session={session} />
+          </DraggableWidget>
+        ),
+        'habits': (
+          <DraggableWidget key="habits" id="habits" title="Habit Tracker" defaultOpen={!isMobile} {...widgetProps}>
+            <HabitTracker session={session} />
+          </DraggableWidget>
+        )
+      }
+      return widgets[id]
+    })}
+  </SortableContext>
+</DndContext>
         </div>
 
         {/* Right Sidebar */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: isMobile ? 'static' : 'sticky', top: '24px' }}>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleRightDragEnd}>
-            <SortableContext items={rightOrder} strategy={verticalListSortingStrategy}>
-                {rightOrder.map((id, index) => React.cloneElement(rightWidgets[id], {
-                    isMobile,
-                    isFirst: index === 0,
-                    isLast: index === rightOrder.length - 1,
-                    onMoveUp: () => setRightOrder(prev => arrayMove(prev, index, index - 1)),
-                    onMoveDown: () => setRightOrder(prev => arrayMove(prev, index, index + 1))
-                }))}
-            </SortableContext>
-          </DndContext>
+  <SortableContext items={rightOrder} strategy={verticalListSortingStrategy}>
+    {rightOrder.map((id, index) => {
+      const widgetProps = {
+        isMobile,
+        isFirst: index === 0,
+        isLast: index === rightOrder.length - 1,
+        onMoveUp: () => setRightOrder(prev => arrayMove(prev, index, index - 1)),
+        onMoveDown: () => setRightOrder(prev => arrayMove(prev, index, index + 1))
+      }
+      const widgets = {
+        'spotify': (
+          <DraggableWidget key="spotify" id="spotify" title="Spotify" defaultOpen={!isMobile} {...widgetProps}>
+            <Spotify />
+          </DraggableWidget>
+        ),
+        'calendar': (
+          <DraggableWidget key="calendar" id="calendar" title="Google Calendar" defaultOpen={!isMobile} {...widgetProps}>
+            <GoogleCalendar />
+          </DraggableWidget>
+        ),
+        'news': (
+          <DraggableWidget key="news" id="news" title="News Feed" defaultOpen={!isMobile} {...widgetProps}>
+            <RSSFeed />
+          </DraggableWidget>
+        )
+      }
+      return widgets[id]
+    })}
+  </SortableContext>
+</DndContext>
         </div>
       </div>
     </div>
