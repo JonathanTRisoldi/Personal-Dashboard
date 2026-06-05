@@ -10,6 +10,7 @@ import GoogleCalendar from './widgets/GoogleCalendar'
 import Spotify from './widgets/Spotify'
 import Widget from './Widget'
 import useProfile from './ProfileSetup'
+import HabitTracker from './widgets/HabitTracker'
 
 export default function Dashboard({ session }) {
   const { displayName, updateDisplayName, loading } = useProfile(session)
@@ -135,6 +136,10 @@ export default function Dashboard({ session }) {
 
           <Widget title="Daily Journal" defaultOpen={!isMobile}>
             <Journal session={session} />
+          </Widget>
+
+          <Widget title="Habit Tracker" defaultOpen={!isMobile}>
+            <HabitTracker session={session} />
           </Widget>
         </div>
 
