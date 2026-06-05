@@ -1,3 +1,4 @@
+import react from 'react'
 import { useState, useEffect } from 'react'
 import { supabase } from '../supabase'
 import DateTimeWeather from './widgets/DateTimeWeather'
@@ -226,7 +227,24 @@ const sensors = useSensors(
           {leftWidgets['datetime']}
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleLeftDragEnd}>
             <SortableContext items={leftOrder.filter(id => id !== 'datetime')} strategy={verticalListSortingStrategy}>
-              {leftOrder.filter(id => id !== 'datetime').map(id => leftWidgets[id])}
+                {leftOrder.filter(id => id !== 'datetime').map((id, index) => {
+                    const filteredOrder = leftOrder.filter(i => i !== 'datetime')
+                    return React.cloneElement(leftWidgets[id], {
+                        isMobile,
+                        isFirst: index === 0,
+                        isLast: index === filteredOrder.length - 1,
+                        onMoveUp: () => setLeftOrder(prev => {
+                            const filtered = prev.filter(i => i !== 'datetime')
+                            const newOrder = arrayMove(filtered, index, index - 1)
+                            return ['datetime', ...newOrder]
+                        }),
+                        onMoveDown: () => setLeftOrder(prev => {
+                            const filtered = prev.filter(i => i !== 'datetime')
+                            const newOrder = arrayMove(filtered, index, index + 1)
+                            return ['datetime', ...newOrder]
+                        })
+                    })
+                })}
             </SortableContext>
           </DndContext>
         </div>
@@ -235,7 +253,13 @@ const sensors = useSensors(
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: isMobile ? 'static' : 'sticky', top: '24px' }}>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleRightDragEnd}>
             <SortableContext items={rightOrder} strategy={verticalListSortingStrategy}>
-              {rightOrder.map(id => rightWidgets[id])}
+                {rightOrder.map((id, index) => React.cloneElement(rightWidgets[id], {
+                    isMobile,
+                    isFirst: index === 0,
+                    isLast: index === rightOrder.length - 1,
+                    onMoveUp: () => setRightOrder(prev => arrayMove(prev, index, index - 1)),
+                    onMoveDown: () => setRightOrder(prev => arrayMove(prev, index, index + 1))
+                }))}
             </SortableContext>
           </DndContext>
         </div>

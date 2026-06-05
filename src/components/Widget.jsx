@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function Widget({ title, children, defaultOpen = true, dragHandleProps = {} }) {
+export default function Widget({ title, children, defaultOpen = true, dragHandleProps = {}, isMobile, onMoveUp, onMoveDown, isFirst, isLast }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   return (
@@ -13,13 +13,49 @@ export default function Widget({ title, children, defaultOpen = true, dragHandle
         userSelect: 'none'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
-          <span
-            {...dragHandleProps}
-            style={{ color: '#3a3f5c', fontSize: '16px', cursor: 'grab', padding: '0 4px' }}
-            title="Drag to reorder"
-          >
-            ⠿
-          </span>
+          {!isMobile && (
+            <span
+              {...dragHandleProps}
+              style={{ color: '#3a3f5c', fontSize: '16px', cursor: 'grab', padding: '0 4px' }}
+              title="Drag to reorder"
+            >
+              ⠿
+            </span>
+          )}
+          {isMobile && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <button
+                onClick={onMoveUp}
+                disabled={isFirst}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: isFirst ? '#2a2d3e' : '#6c63ff',
+                  cursor: isFirst ? 'default' : 'pointer',
+                  fontSize: '12px',
+                  padding: '0',
+                  lineHeight: 1
+                }}
+              >
+                ▲
+              </button>
+              <button
+                onClick={onMoveDown}
+                disabled={isLast}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: isLast ? '#2a2d3e' : '#6c63ff',
+                  cursor: isLast ? 'default' : 'pointer',
+                  fontSize: '12px',
+                  padding: '0',
+                  lineHeight: 1
+                }}
+              >
+                ▼
+              </button>
+            </div>
+          )}
           <h2
             onClick={() => setIsOpen(!isOpen)}
             style={{ color: '#fff', fontSize: '18px', margin: 0, cursor: 'pointer', flex: 1 }}
