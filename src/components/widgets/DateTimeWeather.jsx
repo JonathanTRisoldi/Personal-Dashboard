@@ -72,10 +72,10 @@ export default function DateTimeWeather() {
     }}>
       {/* Time & Date */}
       <div>
-        <div style={{ fontSize: '40px', fontWeight: 'bold', color: '#fff', lineHeight: 1 }}>
+        <div style={{ textAlign: 'center', fontSize: '40px', fontWeight: 'bold', color: '#fff', lineHeight: 1 }}>
           {formatTime(time)}
         </div>
-        <div style={{ fontSize: '14px', color: '#888', marginTop: '6px' }}>
+        <div style={{ textAlign: 'center', fontSize: '14px', color: '#888', marginTop: '6px' }}>
           {formatDate(time)}
         </div>
       </div>
