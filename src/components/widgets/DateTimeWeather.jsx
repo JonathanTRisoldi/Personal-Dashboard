@@ -114,7 +114,7 @@ export default function DateTimeWeather() {
       </div>
 
       {/* Weather */}
-      <div style={{ textAlign: 'right' }}>
+      <div style={{ textAlign: 'center' }}>
         {weather ? (
           <>
             <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#fff' }}>
