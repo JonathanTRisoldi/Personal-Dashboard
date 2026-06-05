@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../../supabase'
 
 export default function HabitTracker({ session }) {
+  const [editingHabit, setEditingHabit] = useState(null)
+  const [editName, setEditName] = useState('')
   const [habits, setHabits] = useState([])
   const [newHabit, setNewHabit] = useState('')
   const [loading, setLoading] = useState(true)
@@ -36,25 +38,33 @@ export default function HabitTracker({ session }) {
     setHabits(habits.filter(h => h.id !== id))
   }
 
+  const startEditing = (habit) => {
+    setEditingHabit(habit.id)
+    setEditName(habit.name)
+  }
+
+  const saveEdit = async (id) => {
+    if (!editName.trim()) return
+    const { error } = await supabase
+      .from('habits')
+      .update({ name: editName })
+      .eq('id', id)
+    if (error) { console.log(error); return }
+    setHabits(habits.map(h => h.id === id ? { ...h, name: editName } : h))
+    setEditingHabit(null)
+  }
+
   const toggleToday = async (habit) => {
     const today = new Date().toISOString().split('T')[0]
     const alreadyDone = habit.habit_completions.some(c => c.completed_date === today)
-
     if (alreadyDone) {
-      await supabase
-        .from('habit_completions')
-        .delete()
-        .eq('habit_id', habit.id)
-        .eq('completed_date', today)
+      await supabase.from('habit_completions').delete().eq('habit_id', habit.id).eq('completed_date', today)
       setHabits(habits.map(h => h.id === habit.id ? {
         ...h,
         habit_completions: h.habit_completions.filter(c => c.completed_date !== today)
       } : h))
     } else {
-      const { data } = await supabase
-        .from('habit_completions')
-        .insert({ habit_id: habit.id, completed_date: today })
-        .select()
+      const { data } = await supabase.from('habit_completions').insert({ habit_id: habit.id, completed_date: today }).select()
       if (data && data[0]) {
         setHabits(habits.map(h => h.id === habit.id ? {
           ...h,
@@ -66,18 +76,12 @@ export default function HabitTracker({ session }) {
 
   const getStreak = (completions) => {
     if (!completions.length) return 0
-    const dates = completions
-      .map(c => c.completed_date)
-      .sort((a, b) => new Date(b) - new Date(a))
-
+    const dates = completions.map(c => c.completed_date).sort((a, b) => new Date(b) - new Date(a))
     const today = new Date().toISOString().split('T')[0]
     const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0]
-
     if (dates[0] !== today && dates[0] !== yesterday) return 0
-
     let streak = 0
     let current = new Date(dates[0])
-
     for (let i = 0; i < dates.length; i++) {
       const date = new Date(dates[i])
       const expected = new Date(current)
@@ -92,23 +96,12 @@ export default function HabitTracker({ session }) {
 
   const getBestStreak = (completions) => {
     if (!completions.length) return 0
-    const dates = completions
-      .map(c => c.completed_date)
-      .sort((a, b) => new Date(a) - new Date(b))
-
+    const dates = completions.map(c => c.completed_date).sort((a, b) => new Date(a) - new Date(b))
     let best = 1
     let current = 1
-
     for (let i = 1; i < dates.length; i++) {
-      const prev = new Date(dates[i - 1])
-      const curr = new Date(dates[i])
-      const diff = (curr - prev) / 86400000
-      if (diff === 1) {
-        current++
-        best = Math.max(best, current)
-      } else {
-        current = 1
-      }
+      const diff = (new Date(dates[i]) - new Date(dates[i - 1])) / 86400000
+      if (diff === 1) { current++; best = Math.max(best, current) } else { current = 1 }
     }
     return best
   }
@@ -117,10 +110,7 @@ export default function HabitTracker({ session }) {
     const days = []
     for (let i = 29; i >= 0; i--) {
       const date = new Date(Date.now() - i * 86400000).toISOString().split('T')[0]
-      days.push({
-        date,
-        completed: completions.some(c => c.completed_date === date)
-      })
+      days.push({ date, completed: completions.some(c => c.completed_date === date) })
     }
     return days
   }
@@ -176,7 +166,6 @@ export default function HabitTracker({ session }) {
             const bestStreak = getBestStreak(habit.habit_completions)
             const last30 = getLast30Days(habit.habit_completions)
             const doneToday = isCompletedToday(habit.habit_completions)
-
             return (
               <div key={habit.id} style={{
                 background: '#0f1117',
@@ -205,14 +194,47 @@ export default function HabitTracker({ session }) {
                     >
                       {doneToday ? '✓' : ''}
                     </button>
-                    <span style={{
-                      color: doneToday ? '#4dff91' : '#e0e0e0',
-                      fontSize: '15px',
-                      fontWeight: '500',
-                      textDecoration: doneToday ? 'line-through' : 'none'
-                    }}>
-                      {habit.name}
-                    </span>
+                    {editingHabit === habit.id ? (
+                      <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                        <input
+                          type="text"
+                          value={editName}
+                          onChange={(e) => setEditName(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && saveEdit(habit.id)}
+                          autoFocus
+                          style={{
+                            padding: '4px 8px',
+                            background: '#1a1d2e',
+                            border: '1px solid #6c63ff',
+                            borderRadius: '6px',
+                            color: '#fff',
+                            fontSize: '14px',
+                            width: '150px'
+                          }}
+                        />
+                        <button
+                          onClick={() => saveEdit(habit.id)}
+                          style={{ padding: '4px 10px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={() => setEditingHabit(null)}
+                          style={{ padding: '4px 10px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <span style={{
+                        color: doneToday ? '#4dff91' : '#e0e0e0',
+                        fontSize: '15px',
+                        fontWeight: '500',
+                        textDecoration: doneToday ? 'line-through' : 'none'
+                      }}>
+                        {habit.name}
+                      </span>
+                    )}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{ textAlign: 'center' }}>
@@ -225,6 +247,12 @@ export default function HabitTracker({ session }) {
                       <div style={{ color: '#fff', fontSize: '13px', fontWeight: 'bold' }}>{bestStreak}</div>
                       <div style={{ color: '#555', fontSize: '10px' }}>best</div>
                     </div>
+                    <button
+                      onClick={() => startEditing(habit)}
+                      style={{ background: 'none', border: 'none', color: '#6c63ff', cursor: 'pointer', fontSize: '16px' }}
+                    >
+                      ✎
+                    </button>
                     <button
                       onClick={() => deleteHabit(habit.id)}
                       style={{ background: 'none', border: 'none', color: '#ff4d4d', cursor: 'pointer', fontSize: '18px' }}
