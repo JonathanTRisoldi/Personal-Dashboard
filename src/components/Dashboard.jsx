@@ -168,7 +168,9 @@ const sensors = useSensors(
       }}>
         {/* Left Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {leftWidgets['datetime']}
+          <Widget title="Date, Time & Weather">
+  <DateTimeWeather />
+</Widget>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleLeftDragEnd}>
   <SortableContext items={leftOrder.filter(id => id !== 'datetime')} strategy={verticalListSortingStrategy}>
     {leftOrder.filter(id => id !== 'datetime').map((id, index) => {
