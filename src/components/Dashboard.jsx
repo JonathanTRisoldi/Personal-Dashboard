@@ -16,6 +16,7 @@ import {
   DndContext,
   closestCenter,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors
 } from '@dnd-kit/core'
@@ -56,9 +57,14 @@ export default function Dashboard({ session }) {
     localStorage.setItem('right_order', JSON.stringify(rightOrder))
   }, [rightOrder])
 
-  const sensors = useSensors(useSensor(PointerSensor, {
-    activationConstraint: { distance: 8 }
-  }))
+const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 8 }
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: { delay: 250, tolerance: 5 }
+    })
+  )
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
