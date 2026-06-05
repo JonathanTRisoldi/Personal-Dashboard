@@ -11,6 +11,7 @@ export default function Spotify() {
   const [token, setToken] = useState(() => localStorage.getItem('spotify_token'))
   const [current, setCurrent] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -33,6 +34,15 @@ export default function Spotify() {
       window.history.replaceState({}, document.title, window.location.pathname)
     }
   }, [])
+
+  useEffect(() => {
+    if (!current || !current.is_playing) return
+    setProgress(current.progress_ms)
+    const timer = setInterval(() => {
+      setProgress(prev => prev + 1000)
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [current])
 
   const exchangeToken = async (code) => {
     const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID
@@ -211,14 +221,14 @@ export default function Spotify() {
             <div style={{ background: '#2a2d3e', borderRadius: '4px', height: '4px', marginBottom: '4px' }}>
               <div style={{
                 background: '#1db954',
-                width: `${(current.progress_ms / current.item.duration_ms) * 100}%`,
+                width: `${(progress / current.item.duration_ms) * 100}%`,
                 height: '100%',
                 borderRadius: '4px',
                 transition: 'width 1s linear'
               }} />
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#555', fontSize: '11px' }}>{formatTime(current.progress_ms)}</span>
+              <span style={{ color: '#555', fontSize: '11px' }}>{formatTime(progress)}</span>
               <span style={{ color: '#555', fontSize: '11px' }}>{formatTime(current.item.duration_ms)}</span>
             </div>
           </div>
