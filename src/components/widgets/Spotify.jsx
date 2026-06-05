@@ -39,7 +39,13 @@ export default function Spotify() {
     if (!current || !current.is_playing) return
     setProgress(current.progress_ms)
     const timer = setInterval(() => {
-      setProgress(prev => prev + 1000)
+      setProgress(prev => {
+        if (prev >= current.item.duration_ms) {
+          fetchCurrentTrack()
+          return 0
+        }
+        return prev + 1000
+      })
     }, 1000)
     return () => clearInterval(timer)
   }, [current])
