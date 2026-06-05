@@ -90,6 +90,7 @@ export default function Spotify() {
       const res = await fetch('https://api.spotify.com/v1/me/player', {
         headers: { Authorization: `Bearer ${token}` }
       })
+      console.log('Status:', res.status)
       if (res.status === 401) {
         localStorage.removeItem('spotify_token')
         setToken(null)
@@ -100,6 +101,7 @@ export default function Spotify() {
         return
       }
       const data = await res.json()
+      console.log('Player data:', data)
       setCurrent(data)
     } catch (e) {
       console.log('Spotify error', e)
