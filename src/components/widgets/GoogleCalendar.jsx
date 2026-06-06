@@ -239,14 +239,59 @@ export default function GoogleCalendar() {
       {/* Edit Event Form */}
       {editingEvent && (
         <div style={{ background: '#0f1117', borderRadius: '8px', padding: '12px', marginBottom: '12px' }}>
-          <p style={{ color: '#aaa', fontSize: '12px', marginBottom: '8px' }}>Editing event</p>
-          <input type="text" value={editingEvent.summary} onChange={e => setEditingEvent({ ...editingEvent, summary: e.target.value })} style={inputStyle} />
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
-            <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '8px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Cancel</button>
-          </div>
+            <p style={{ color: '#aaa', fontSize: '12px', marginBottom: '8px' }}>Editing event</p>
+            <input
+                type="text"
+                value={editingEvent.summary}
+                onChange={e => setEditingEvent({ ...editingEvent, summary: e.target.value })}
+                placeholder="Event title..."
+                style={inputStyle}
+            />
+      {editingEvent.start.date ? (
+        <input
+            type="date"
+            value={editingEvent.start.date}
+            onChange={e => setEditingEvent({
+                ...editingEvent,
+                start: { date: e.target.value },
+                end: { date: e.target.value }
+            })}
+            style={inputStyle}
+        />
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+            <div>
+                <p style={{ color: '#555', fontSize: '11px', marginBottom: '4px' }}>Start</p>
+            <input
+                type="datetime-local"
+                value={editingEvent.start.dateTime?.slice(0, 16)}
+                onChange={e => setEditingEvent({
+                    ...editingEvent,
+                    start: { ...editingEvent.start, dateTime: e.target.value + ':00' }
+                })}
+                style={{ ...inputStyle, marginBottom: 0 }}
+            />
         </div>
-      )}
+        <div>
+          <p style={{ color: '#555', fontSize: '11px', marginBottom: '4px' }}>End</p>
+          <input
+            type="datetime-local"
+            value={editingEvent.end.dateTime?.slice(0, 16)}
+            onChange={e => setEditingEvent({
+              ...editingEvent,
+              end: { ...editingEvent.end, dateTime: e.target.value + ':00' }
+            })}
+            style={{ ...inputStyle, marginBottom: 0 }}
+          />
+        </div>
+      </div>
+    )}
+    <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+      <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
+      <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '8px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Cancel</button>
+    </div>
+  </div>
+)}
 
       {/* Upcoming Events */}
       {loading ? (
