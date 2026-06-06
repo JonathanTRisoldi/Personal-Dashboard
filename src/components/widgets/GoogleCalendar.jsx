@@ -113,7 +113,13 @@ export default function GoogleCalendar() {
 
   const getEventsForDay = (day) => {
     return events.filter(event => {
-      const eventDate = new Date(event.start.date || event.start.dateTime)
+      let eventDate
+      if (event.start.date) {
+        const [year, month, d] = event.start.date.split('-').map(Number)
+        eventDate = new Date(year, month - 1, d)
+      } else {
+        eventDate = new Date(event.start.dateTime)
+      }
       return eventDate.getDate() === day &&
         eventDate.getMonth() === currentDate.getMonth() &&
         eventDate.getFullYear() === currentDate.getFullYear()
@@ -131,11 +137,19 @@ export default function GoogleCalendar() {
   const nextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))
 
   const upcomingEvents = events
-    .filter(e => new Date(e.start.date || e.start.dateTime) >= new Date())
+    .filter(e => {
+      const date = e.start.date
+        ? (() => { const [y, m, d] = e.start.date.split('-').map(Number); return new Date(y, m - 1, d) })()
+        : new Date(e.start.dateTime)
+      return date >= new Date(new Date().setHours(0, 0, 0, 0))
+    })
     .slice(0, 5)
 
   const formatEventTime = (event) => {
-    if (event.start.date) return new Date(event.start.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    if (event.start.date) {
+      const [year, month, day] = event.start.date.split('-').map(Number)
+      return new Date(year, month - 1, day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    }
     return new Date(event.start.dateTime).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
   }
 
