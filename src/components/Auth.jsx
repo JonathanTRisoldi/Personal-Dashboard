@@ -4,6 +4,7 @@ import { supabase } from '../supabase'
 export default function Auth() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [username, setUsername] = useState('')
@@ -12,6 +13,8 @@ export default function Auth() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [message, setMessage] = useState(null)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -37,6 +40,16 @@ export default function Auth() {
         setLoading(false)
         return
       }
+      if (password !== confirmPassword) {
+        setError('Passwords do not match.')
+        setLoading(false)
+        return
+      }
+      if (password.length < 6) {
+        setError('Password must be at least 6 characters.')
+        setLoading(false)
+        return
+      }
       const { data, error } = await supabase.auth.signUp({ email, password })
       if (error) {
         setError(error.message)
@@ -56,13 +69,14 @@ export default function Auth() {
   }
 
   const inputStyle = {
-    width: '100%',
+    flex: 1,
     padding: '10px 14px',
     background: '#0f1117',
     border: '1px solid #2a2d3e',
     borderRadius: '8px',
     color: '#fff',
-    fontSize: '15px'
+    fontSize: '15px',
+    width: '100%'
   }
 
   const labelStyle = {
@@ -71,6 +85,27 @@ export default function Auth() {
     color: '#aaa',
     fontSize: '14px'
   }
+
+  const eyeButton = (show, toggle) => (
+    <button
+      onClick={toggle}
+      type="button"
+      style={{
+        position: 'absolute',
+        right: '10px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        background: 'none',
+        border: 'none',
+        color: '#888',
+        cursor: 'pointer',
+        fontSize: '16px',
+        padding: '0'
+      }}
+    >
+      {show ? '🙈' : '👁️'}
+    </button>
+  )
 
   return (
     <div style={{
@@ -90,25 +125,25 @@ export default function Auth() {
         boxShadow: '0 4px 24px rgba(0,0,0,0.4)'
       }}>
         <h1 style={{ textAlign: 'center', marginBottom: '8px', color: '#fff' }}>My Dashboard</h1>
-        <p style={{ textAlign: 'center', color: '#888', marginBottom: '8px' }}>
+        <p style={{ textAlign: 'center', color: '#888', marginBottom: '16px' }}>
           {isReset ? 'Reset your password' : isLogin ? 'Welcome back!' : 'Create your account'}
         </p>
 
         {/* Privacy Notice */}
         {!isLogin && !isReset && (
-            <div style={{
-                background: '#6c63ff22',
-                border: '1px solid #6c63ff44',
-                borderRadius: '8px',
-                padding: '10px 14px',
-                marginBottom: '16px',
-                fontSize: '12px',
-                color: '#aaa',
-                textAlign: 'center'
-            }}>
-                By signing up you agree to our use of your data to power your personal dashboard.
+          <div style={{
+            background: '#6c63ff22',
+            border: '1px solid #6c63ff44',
+            borderRadius: '8px',
+            padding: '10px 14px',
+            marginBottom: '16px',
+            fontSize: '12px',
+            color: '#aaa',
+            textAlign: 'center'
+          }}>
+            By signing up you agree to our use of your data to power your personal dashboard.
             Your data is stored securely and is never sold or shared with third parties.
-            </div>
+          </div>
         )}
 
         {error && (
@@ -128,55 +163,52 @@ export default function Auth() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
               <div>
                 <label style={labelStyle}>First Name</label>
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  style={inputStyle}
-                />
+                <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} style={inputStyle} />
               </div>
               <div>
                 <label style={labelStyle}>Last Name</label>
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  style={inputStyle}
-                />
+                <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} style={inputStyle} />
               </div>
             </div>
             <div style={{ marginBottom: '16px' }}>
               <label style={labelStyle}>Username</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="e.g. johndoe"
-                style={inputStyle}
-              />
+              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g. johndoe" style={inputStyle} />
             </div>
           </>
         )}
 
         <div style={{ marginBottom: '16px' }}>
           <label style={labelStyle}>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={inputStyle}
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} />
         </div>
 
         {!isReset && (
-          <div style={{ marginBottom: '24px' }}>
+          <div style={{ marginBottom: !isLogin ? '16px' : '24px' }}>
             <label style={labelStyle}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={inputStyle}
-            />
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{ ...inputStyle, paddingRight: '40px' }}
+              />
+              {eyeButton(showPassword, () => setShowPassword(!showPassword))}
+            </div>
+          </div>
+        )}
+
+        {!isLogin && !isReset && (
+          <div style={{ marginBottom: '24px' }}>
+            <label style={labelStyle}>Confirm Password</label>
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={{ ...inputStyle, paddingRight: '40px' }}
+              />
+              {eyeButton(showConfirmPassword, () => setShowConfirmPassword(!showConfirmPassword))}
+            </div>
           </div>
         )}
 
