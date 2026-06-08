@@ -294,34 +294,34 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                 <label style={{ display: 'block', color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Theme</label>
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <button
-                    onClick={() => onThemeChange('dark')}
-                    style={{
-                        padding: '12px',
-                        background: theme === 'dark' ? '#3a3f5c' : 'var(--card-inner)',
-                        color: 'var(--text)',
-                        border: theme === 'dark' ? '2px solid #6c63ff' : '2px solid var(--border)',
-                        borderRadius: '8px',
+                      onClick={() => onThemeChange('dark')}
+                      style={{
                         flex: 1,
+                        padding: '12px',
+                        background: theme === 'dark' ? '#6c63ff' : 'var(--card-inner)',
+                        color: '#fff',
+                        border: theme === 'dark' ? '1px solid #6c63ff' : '1px solid var(--border)',
+                        borderRadius: '8px',
                         cursor: 'pointer',
                         fontSize: '14px'
-                    }}
+                      }}
                     >
-                        🌙 Dark
+                      🌙 Dark
                     </button>
                     <button
-                        onClick={() => onThemeChange('light')}
-                        style={{
+                      onClick={() => onThemeChange('light')}
+                      style={{
                         flex: 1,
                         padding: '12px',
-                        background: theme === 'light' ? '#e8eaf0' : 'var(--card-inner)',
-                        color: 'var(--text)',
-                        border: theme === 'light' ? '2px solid #6c63ff' : '2px solid var(--border)',
+                        background: theme === 'light' ? '#6c63ff' : 'var(--card-inner)',
+                        color: '#fff',
+                        border: theme === 'light' ? '1px solid #6c63ff' : '1px solid var(--border)',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         fontSize: '14px'
-                    }}
+                      }}
                     >
-                        ☀️ Light
+                      ☀️ Light
                     </button>
                 </div>
               </div>
