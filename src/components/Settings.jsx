@@ -13,7 +13,7 @@ const WIDGETS = [
 ]
 
 const ACCENT_COLORS = [
-  { label: 'Purple', value: '#6c63ff' },
+  { label: 'Purple', value: 'var(--accent)' },
   { label: 'Blue', value: '#3b82f6' },
   { label: 'Green', value: '#10b981' },
   { label: 'Pink', value: '#ec4899' },
@@ -99,7 +99,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
 
   const tabStyle = (tab) => ({
     padding: '8px 16px',
-    background: activeTab === tab ? '#6c63ff' : 'none',
+    background: activeTab === tab ? 'var(--accent)' : 'none',
     color: activeTab === tab ? '#fff' : '#888',
     border: 'none',
     borderRadius: '8px',
@@ -181,7 +181,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                   <button
                     onClick={saveDisplayName}
                     disabled={savingName}
-                    style={{ padding: '10px 16px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+                    style={{ padding: '10px 16px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
                   >
                     {savingName ? 'Saving...' : 'Save'}
                   </button>
@@ -298,9 +298,9 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                     style={{
                       flex: 1,
                       padding: '12px',
-                      background: theme === 'dark' ? '#6c63ff' : '#0f1117',
+                      background: theme === 'dark' ? 'var(--accent)' : '#0f1117',
                       color: '#fff',
-                      border: theme === 'dark' ? '1px solid #6c63ff' : '1px solid #2a2d3e',
+                      border: theme === 'dark' ? '1px solid var(--accent)' : '1px solid #2a2d3e',
                       borderRadius: '8px',
                       cursor: 'pointer',
                       fontSize: '14px'
@@ -313,9 +313,9 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                     style={{
                       flex: 1,
                       padding: '12px',
-                      background: theme === 'light' ? '#6c63ff' : '#0f1117',
+                      background: theme === 'light' ? 'var(--accent)' : '#0f1117',
                       color: '#fff',
-                      border: theme === 'light' ? '1px solid #6c63ff' : '1px solid #2a2d3e',
+                      border: theme === 'light' ? '1px solid var(--accent)' : '1px solid #2a2d3e',
                       borderRadius: '8px',
                       cursor: 'pointer',
                       fontSize: '14px'

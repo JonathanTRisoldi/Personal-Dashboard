@@ -169,7 +169,7 @@ export default function GoogleCalendar() {
       <div style={{ textAlign: 'center', padding: '16px 0' }}>
         <p style={{ color: '#888', fontSize: '13px', marginBottom: '16px' }}>Connect your Google Calendar to see upcoming events.</p>
         {error && <p style={{ color: '#ff4d4d', fontSize: '13px', marginBottom: '12px' }}>{error}</p>}
-        <button onClick={() => login()} style={{ padding: '10px 20px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', margin: '0 auto', display: 'block' }}>
+        <button onClick={() => login()} style={{ padding: '10px 20px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', margin: '0 auto', display: 'block' }}>
           Connect Google Calendar
         </button>
       </div>
@@ -212,13 +212,13 @@ export default function GoogleCalendar() {
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: '6px',
-              background: isToday(day) ? '#6c63ff' : day ? '#0f1117' : 'transparent',
+              background: isToday(day) ? 'var(--accent)' : day ? '#0f1117' : 'transparent',
             }}>
               {day && (
                 <>
                   <span style={{ fontSize: '12px', color: isToday(day) ? '#fff' : '#aaa' }}>{day}</span>
                   {dayEvents.length > 0 && (
-                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: isToday(day) ? '#fff' : '#6c63ff', marginTop: '2px' }} />
+                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: isToday(day) ? '#fff' : 'var(--accent)', marginTop: '2px' }} />
                   )}
                 </>
               )}
@@ -230,7 +230,7 @@ export default function GoogleCalendar() {
       {/* Add Event Button */}
       <button
         onClick={() => setShowAddEvent(!showAddEvent)}
-        style={{ width: '100%', padding: '8px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', marginBottom: '12px' }}
+        style={{ width: '100%', padding: '8px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', marginBottom: '12px' }}
       >
         {showAddEvent ? 'Cancel' : '+ Add Event'}
       </button>
@@ -301,7 +301,7 @@ export default function GoogleCalendar() {
       </div>
     )}
     <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-      <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
+      <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
       <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '8px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Cancel</button>
     </div>
   </div>
@@ -317,14 +317,14 @@ export default function GoogleCalendar() {
           <p style={{ color: '#555', fontSize: '11px', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Upcoming</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
             {upcomingEvents.map(event => (
-              <div key={event.id} style={{ padding: '8px 10px', background: '#0f1117', borderRadius: '6px', borderLeft: '3px solid #6c63ff' }}>
+              <div key={event.id} style={{ padding: '8px 10px', background: '#0f1117', borderRadius: '6px', borderLeft: '3px solid var(--accent)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div>
                     <p style={{ color: '#e0e0e0', fontSize: '12px', marginBottom: '2px' }}>{event.summary}</p>
                     <p style={{ color: '#555', fontSize: '11px' }}>{formatEventTime(event)}</p>
                   </div>
                   <div style={{ display: 'flex', gap: '6px' }}>
-                    <button onClick={() => setEditingEvent(event)} style={{ background: 'none', border: 'none', color: '#6c63ff', cursor: 'pointer', fontSize: '13px' }}>✎</button>
+                    <button onClick={() => setEditingEvent(event)} style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontSize: '13px' }}>✎</button>
                     <button onClick={() => deleteEvent(event.id)} style={{ background: 'none', border: 'none', color: '#ff4d4d', cursor: 'pointer', fontSize: '14px' }}>×</button>
                   </div>
                 </div>

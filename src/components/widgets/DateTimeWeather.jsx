@@ -72,7 +72,7 @@ export default function DateTimeWeather() {
             }}>
               "{quote.q}"
             </p>
-            <p style={{ color: '#6c63ff', fontSize: '12px' }}>— {quote.a}</p>
+            <p style={{ color: 'var(--accent)', fontSize: '12px' }}>— {quote.a}</p>
             <button
               onClick={() => setQuote(quotes_list[Math.floor(Math.random() * quotes_list.length)])}
               style={{

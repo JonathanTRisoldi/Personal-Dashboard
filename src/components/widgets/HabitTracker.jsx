@@ -146,7 +146,7 @@ export default function HabitTracker({ session }) {
           onClick={addHabit}
           style={{
             padding: '8px 16px',
-            background: '#6c63ff',
+            background: 'var(--accent)',
             color: '#fff',
             border: 'none',
             borderRadius: '8px',
@@ -174,7 +174,7 @@ export default function HabitTracker({ session }) {
                 background: '#0f1117',
                 borderRadius: '10px',
                 padding: '16px',
-                borderLeft: `3px solid ${doneToday ? '#4dff91' : '#6c63ff'}`
+                borderLeft: `3px solid ${doneToday ? '#4dff91' : 'var(--accent)'}`
               }}>
                 {/* Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
@@ -208,7 +208,7 @@ export default function HabitTracker({ session }) {
                           style={{
                             padding: '4px 8px',
                             background: '#1a1d2e',
-                            border: '1px solid #6c63ff',
+                            border: '1px solid var(--accent)',
                             borderRadius: '6px',
                             color: '#fff',
                             fontSize: '14px',
@@ -217,7 +217,7 @@ export default function HabitTracker({ session }) {
                         />
                         <button
                           onClick={() => saveEdit(habit.id)}
-                          style={{ padding: '4px 10px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                          style={{ padding: '4px 10px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
                         >
                           Save
                         </button>
@@ -252,7 +252,7 @@ export default function HabitTracker({ session }) {
                     </div>
                     <button
                       onClick={() => startEditing(habit)}
-                      style={{ background: 'none', border: 'none', color: '#6c63ff', cursor: 'pointer', fontSize: '16px' }}
+                      style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontSize: '16px' }}
                     >
                       ✎
                     </button>

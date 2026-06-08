@@ -132,8 +132,8 @@ export default function Auth() {
         {/* Privacy Notice */}
         {!isLogin && !isReset && (
           <div style={{
-            background: '#6c63ff22',
-            border: '1px solid #6c63ff44',
+            background: 'var(--accent)22',
+            border: '1px solid var(--accent)44',
             borderRadius: '8px',
             padding: '10px 14px',
             marginBottom: '16px',
@@ -218,7 +218,7 @@ export default function Auth() {
           style={{
             width: '100%',
             padding: '12px',
-            background: '#6c63ff',
+            background: 'var(--accent)',
             color: '#fff',
             border: 'none',
             borderRadius: '8px',
@@ -232,7 +232,7 @@ export default function Auth() {
 
         {isReset ? (
           <p style={{ textAlign: 'center', color: '#888', fontSize: '14px' }}>
-            <span onClick={() => { setIsReset(false); setError(null); setMessage(null) }} style={{ color: '#6c63ff', cursor: 'pointer' }}>
+            <span onClick={() => { setIsReset(false); setError(null); setMessage(null) }} style={{ color: 'var(--accent)', cursor: 'pointer' }}>
               Back to Sign In
             </span>
           </p>
@@ -240,13 +240,13 @@ export default function Auth() {
           <>
             <p style={{ textAlign: 'center', color: '#888', fontSize: '14px', marginBottom: '8px' }}>
               {isLogin ? "Don't have an account? " : 'Already have an account? '}
-              <span onClick={() => { setIsLogin(!isLogin); setError(null); setMessage(null) }} style={{ color: '#6c63ff', cursor: 'pointer' }}>
+              <span onClick={() => { setIsLogin(!isLogin); setError(null); setMessage(null) }} style={{ color: 'var(--accent)', cursor: 'pointer' }}>
                 {isLogin ? 'Sign Up' : 'Sign In'}
               </span>
             </p>
             {isLogin && (
               <p style={{ textAlign: 'center', color: '#888', fontSize: '14px' }}>
-                <span onClick={() => { setIsReset(true); setError(null); setMessage(null) }} style={{ color: '#6c63ff', cursor: 'pointer' }}>
+                <span onClick={() => { setIsReset(true); setError(null); setMessage(null) }} style={{ color: 'var(--accent)', cursor: 'pointer' }}>
                   Forgot your password?
                 </span>
               </p>

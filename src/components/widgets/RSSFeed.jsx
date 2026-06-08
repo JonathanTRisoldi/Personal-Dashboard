@@ -73,7 +73,7 @@ export default function RSSFeed() {
             onClick={() => setActiveFeed(i)}
             style={{
               padding: '6px 14px',
-              background: activeFeed === i ? '#6c63ff' : '#0f1117',
+              background: activeFeed === i ? 'var(--accent)' : '#0f1117',
               color: activeFeed === i ? '#fff' : '#888',
               border: 'none',
               borderRadius: '6px',
@@ -89,7 +89,7 @@ export default function RSSFeed() {
           style={{
             padding: '6px 14px',
             background: managing ? '#2a2d3e' : 'none',
-            color: '#6c63ff',
+            color: 'var(--accent)',
             border: '1px solid #2a2d3e',
             borderRadius: '6px',
             cursor: 'pointer',
@@ -145,7 +145,7 @@ export default function RSSFeed() {
               onClick={addFeed}
               style={{
                 padding: '7px 16px',
-                background: '#6c63ff',
+                background: 'var(--accent)',
                 color: '#fff',
                 border: 'none',
                 borderRadius: '6px',
@@ -198,7 +198,7 @@ export default function RSSFeed() {
                 background: '#0f1117',
                 borderRadius: '8px',
                 textDecoration: 'none',
-                borderLeft: '3px solid #6c63ff'
+                borderLeft: '3px solid var(--accent)'
               }}
             >
               <p style={{ color: '#e0e0e0', fontSize: '14px', marginBottom: '4px', lineHeight: '1.4' }}>

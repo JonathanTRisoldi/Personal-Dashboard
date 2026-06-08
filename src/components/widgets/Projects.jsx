@@ -158,7 +158,7 @@ export default function Projects({ session }) {
           style={{
             width: '100%',
             padding: '8px',
-            background: '#6c63ff',
+            background: 'var(--accent)',
             color: '#fff',
             border: 'none',
             borderRadius: '8px',
@@ -190,7 +190,7 @@ export default function Projects({ session }) {
                     borderRadius: '8px',
                     marginBottom: '8px',
                     cursor: isEditing ? 'default' : 'pointer',
-                    border: selectedProject?.id === project.id ? '1px solid #6c63ff' : '1px solid transparent'
+                    border: selectedProject?.id === project.id ? '1px solid var(--accent)' : '1px solid transparent'
                   }}
                 >
                   {isEditing ? (
@@ -203,7 +203,7 @@ export default function Projects({ session }) {
                           width: '100%',
                           padding: '6px 10px',
                           background: '#1a1d2e',
-                          border: '1px solid #6c63ff',
+                          border: '1px solid var(--accent)',
                           borderRadius: '6px',
                           color: '#fff',
                           fontSize: '14px',
@@ -232,7 +232,7 @@ export default function Projects({ session }) {
                           style={{
                             flex: 1,
                             padding: '6px',
-                            background: '#6c63ff',
+                            background: 'var(--accent)',
                             color: '#fff',
                             border: 'none',
                             borderRadius: '6px',
@@ -266,7 +266,7 @@ export default function Projects({ session }) {
                         <div style={{ display: 'flex', gap: '6px' }}>
                           <button
                             onClick={(e) => startEditingProject(e, project)}
-                            style={{ background: 'none', border: 'none', color: '#6c63ff', cursor: 'pointer', fontSize: '13px' }}
+                            style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontSize: '13px' }}
                           >
                             ✎
                           </button>
@@ -288,7 +288,7 @@ export default function Projects({ session }) {
                         </div>
                         <div style={{ background: '#1a1d2e', borderRadius: '4px', height: '4px' }}>
                           <div style={{
-                            background: progress === 100 ? '#4dff91' : '#6c63ff',
+                            background: progress === 100 ? '#4dff91' : 'var(--accent)',
                             width: `${progress}%`,
                             height: '100%',
                             borderRadius: '4px',
@@ -327,7 +327,7 @@ export default function Projects({ session }) {
                   onClick={addStep}
                   style={{
                     padding: '6px 12px',
-                    background: '#6c63ff',
+                    background: 'var(--accent)',
                     color: '#fff',
                     border: 'none',
                     borderRadius: '6px',

@@ -56,7 +56,7 @@ export default function Journal({ session }) {
             onClick={() => setView('write')}
             style={{
               padding: '6px 14px',
-              background: view === 'write' ? '#6c63ff' : '#0f1117',
+              background: view === 'write' ? 'var(--accent)' : '#0f1117',
               color: '#fff',
               border: 'none',
               borderRadius: '6px',
@@ -70,7 +70,7 @@ export default function Journal({ session }) {
             onClick={() => setView('entries')}
             style={{
               padding: '6px 14px',
-              background: view === 'entries' ? '#6c63ff' : '#0f1117',
+              background: view === 'entries' ? 'var(--accent)' : '#0f1117',
               color: '#fff',
               border: 'none',
               borderRadius: '6px',
@@ -111,7 +111,7 @@ export default function Journal({ session }) {
             style={{
               width: '100%',
               padding: '10px',
-              background: '#6c63ff',
+              background: 'var(--accent)',
               color: '#fff',
               border: 'none',
               borderRadius: '8px',
@@ -140,7 +140,7 @@ export default function Journal({ session }) {
                       background: selectedEntry?.id === entry.id ? '#2a2d3e' : '#0f1117',
                       borderRadius: '8px',
                       cursor: 'pointer',
-                      border: selectedEntry?.id === entry.id ? '1px solid #6c63ff' : '1px solid transparent'
+                      border: selectedEntry?.id === entry.id ? '1px solid var(--accent)' : '1px solid transparent'
                     }}
                   >
                     <p style={{ color: '#fff', fontSize: '12px', fontWeight: '500' }}>{formatShortDate(entry.created_at)}</p>

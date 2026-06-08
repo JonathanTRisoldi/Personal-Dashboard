@@ -37,7 +37,7 @@ export default function Dashboard({ session }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const [showSettings, setShowSettings] = useState(false)
   const [widgetPrefs, setWidgetPrefs] = useState({})
-  const [accentColor, setAccentColor] = useState(() => localStorage.getItem('accent_color') || '#6c63ff')
+  const [accentColor, setAccentColor] = useState(() => localStorage.getItem('accent_color') || 'var(--accent)')
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
   const [leftOrder, setLeftOrder] = useState(() => {
     const saved = localStorage.getItem('left_order')

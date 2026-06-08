@@ -30,7 +30,7 @@ export default function Widget({ title, children, defaultOpen = true, dragHandle
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: isFirst ? '#2a2d3e' : '#6c63ff',
+                  color: isFirst ? '#2a2d3e' : 'var(--accent)',
                   cursor: isFirst ? 'default' : 'pointer',
                   fontSize: '12px',
                   padding: '0',
@@ -45,7 +45,7 @@ export default function Widget({ title, children, defaultOpen = true, dragHandle
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: isLast ? '#2a2d3e' : '#6c63ff',
+                  color: isLast ? '#2a2d3e' : 'var(--accent)',
                   cursor: isLast ? 'default' : 'pointer',
                   fontSize: '12px',
                   padding: '0',

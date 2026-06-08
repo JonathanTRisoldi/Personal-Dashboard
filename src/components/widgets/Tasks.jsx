@@ -73,7 +73,7 @@ const addTask = async () => {
           onClick={addTask}
           style={{
             padding: '8px 16px',
-            background: '#6c63ff',
+            background: 'var(--accent)',
             color: '#fff',
             border: 'none',
             borderRadius: '8px',

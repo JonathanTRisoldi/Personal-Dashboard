@@ -48,7 +48,7 @@ export default function DailyQuote() {
       }}>
         "{quote.q}"
       </p>
-      <p style={{ color: '#6c63ff', fontSize: '14px', marginBottom: '16px' }}>— {quote.a}</p>
+      <p style={{ color: 'var(--accent)', fontSize: '14px', marginBottom: '16px' }}>— {quote.a}</p>
       <button
         onClick={pickQuote}
         style={{
