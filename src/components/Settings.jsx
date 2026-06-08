@@ -327,28 +327,29 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
               </div>
 
               <div>
-                <label style={{ display: 'block', color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Accent Color</label>
+                <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '14px', marginBottom: '12px' }}>Accent Color</label>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-                  {ACCENT_COLORS.map(color => (
+                    {ACCENT_COLORS.map(color => (
                     <button
-                      key={color.value}
-                      onClick={() => onAccentColorChange(color.value)}
-                      style={{
+                        key={color.value}
+                        onClick={() => onAccentColorChange(color.value)}
+                        style={{
                         padding: '12px',
                         background: color.value,
-                        border: accentColor === color.value ? '3px solid #fff' : '3px solid transparent',
+                        border: accentColor === color.value ? '3px solid var(--text)' : '3px solid transparent',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         color: '#fff',
                         fontSize: '12px',
-                        fontWeight: '500'
-                      }}
+                        fontWeight: '500',
+                        opacity: accentColor === color.value ? 1 : 0.7
+                        }}
                     >
-                      {color.label}
+                        {color.label}
                     </button>
-                  ))}
+                    ))}
                 </div>
-              </div>
+                </divß>
             </div>
           )}
         </div>
