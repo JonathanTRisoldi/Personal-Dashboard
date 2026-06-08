@@ -12,6 +12,7 @@ import HabitTracker from './widgets/HabitTracker'
 import Widget from './Widget'
 import DraggableWidget from './DraggableWidget'
 import useProfile from './ProfileSetup'
+import Settings from './Settings'
 import {
   DndContext,
   closestCenter,
@@ -28,6 +29,7 @@ import {
 
 const DEFAULT_LEFT = ['datetime', 'tasks-notes', 'projects', 'journal', 'habits']
 const DEFAULT_RIGHT = ['spotify', 'calendar', 'news']
+const [showSettings, setShowSettings] = useState(false)
 
 export default function Dashboard({ session }) {
   const { displayName, updateDisplayName, loading } = useProfile(session)
@@ -156,6 +158,22 @@ const sensors = useSensors(
           >
             Sign Out
           </button>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {!isMobile && <span style={{ color: '#888', fontSize: '14px' }}>{session.user.email}</span>}
+            <button
+                onClick={() => setShowSettings(true)}
+                style={{ padding: '8px 16px', background: '#2a2d3e', color: '#aaa', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+            >
+                ⚙️ Settings
+            </button>
+            <button
+                onClick={handleLogout}
+                style={{ padding: '8px 16px', background: '#ff4d4d33', color: '#ff4d4d', border: '1px solid #ff4d4d44', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+            >
+                Sign Out
+            </button>
+        {showSettings && <Settings session={session} onClose={() => setShowSettings(false)} />}
         </div>
       </div>
 
