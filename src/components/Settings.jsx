@@ -99,8 +99,8 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
 
   const tabStyle = (tab) => ({
     padding: '8px 16px',
-    background: activeTab === tab ? 'var(--accent)' : 'none',
-    color: activeTab === tab ? '#fff' : '#888',
+    background: activeTab === tab ? '#6c63ff' : 'none',
+    color: activeTab === tab ? '#fff' : 'var(--text-muted)',
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
@@ -296,33 +296,33 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                   <button
                     onClick={() => onThemeChange('dark')}
                     style={{
-                      flex: 1,
-                      padding: '12px',
-                      background: theme === 'dark' ? 'var(--accent)' : '#0f1117',
-                      color: '#fff',
-                      border: theme === 'dark' ? '1px solid var(--accent)' : '1px solid #2a2d3e',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      fontSize: '14px'
+                        padding: '12px',
+                        background: theme === 'dark' ? '#3a3f5c' : 'var(--card-inner)',
+                        color: 'var(--text)',
+                        border: theme === 'dark' ? '2px solid #6c63ff' : '2px solid var(--border)',
+                        borderRadius: '8px',
+                        flex: 1,
+                        cursor: 'pointer',
+                        fontSize: '14px'
                     }}
-                  >
-                    🌙 Dark
-                  </button>
-                  <button
-                    onClick={() => onThemeChange('light')}
-                    style={{
-                      flex: 1,
-                      padding: '12px',
-                      background: theme === 'light' ? 'var(--accent)' : '#0f1117',
-                      color: '#fff',
-                      border: theme === 'light' ? '1px solid var(--accent)' : '1px solid #2a2d3e',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      fontSize: '14px'
+                    >
+                        🌙 Dark
+                    </button>
+                    <button
+                        onClick={() => onThemeChange('light')}
+                        style={{
+                        flex: 1,
+                        padding: '12px',
+                        background: theme === 'light' ? '#e8eaf0' : 'var(--card-inner)',
+                        color: 'var(--text)',
+                        border: theme === 'light' ? '2px solid #6c63ff' : '2px solid var(--border)',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        fontSize: '14px'
                     }}
-                  >
-                    ☀️ Light
-                  </button>
+                    >
+                        ☀️ Light
+                    </button>
                 </div>
               </div>
 
