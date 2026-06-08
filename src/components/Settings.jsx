@@ -349,7 +349,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                     </button>
                     ))}
                 </div>
-                </divß>
+                </div>
             </div>
           )}
         </div>
