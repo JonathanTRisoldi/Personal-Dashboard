@@ -135,8 +135,8 @@ export default function HabitTracker({ session }) {
           style={{
             flex: 1,
             padding: '8px 12px',
-            background: '#0f1117',
-            border: '1px solid #2a2d3e',
+            background: 'var(--card-inner)',
+            border: '1px solid var(--border)',
             borderRadius: '8px',
             color: '#fff',
             fontSize: '14px'
@@ -159,9 +159,9 @@ export default function HabitTracker({ session }) {
       </div>
 
       {loading ? (
-        <p style={{ color: '#888' }}>Loading...</p>
+        <p style={{ color: 'var(--text-muted)' }}>Loading...</p>
       ) : habits.length === 0 ? (
-        <p style={{ color: '#888', fontSize: '14px' }}>No habits yet. Add one above!</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>No habits yet. Add one above!</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {habits.map(habit => {
@@ -171,7 +171,7 @@ export default function HabitTracker({ session }) {
             const doneToday = isCompletedToday(habit.habit_completions)
             return (
               <div key={habit.id} style={{
-                background: '#0f1117',
+                background: 'var(--card-inner)',
                 borderRadius: '10px',
                 padding: '16px',
                 borderLeft: `3px solid ${doneToday ? '#4dff91' : 'var(--accent)'}`
@@ -207,7 +207,7 @@ export default function HabitTracker({ session }) {
                           autoFocus
                           style={{
                             padding: '4px 8px',
-                            background: '#1a1d2e',
+                            background: 'var(--card)',
                             border: '1px solid var(--accent)',
                             borderRadius: '6px',
                             color: '#fff',
@@ -243,12 +243,12 @@ export default function HabitTracker({ session }) {
                     <div style={{ textAlign: 'center' }}>
                       <div style={{ fontSize: '18px' }}>🔥</div>
                       <div style={{ color: '#fff', fontSize: '13px', fontWeight: 'bold' }}>{streak}</div>
-                      <div style={{ color: '#555', fontSize: '10px' }}>streak</div>
+                      <div style={{ color: 'var(--text-dim)', fontSize: '10px' }}>streak</div>
                     </div>
                     <div style={{ textAlign: 'center' }}>
                       <div style={{ fontSize: '18px' }}>🏆</div>
                       <div style={{ color: '#fff', fontSize: '13px', fontWeight: 'bold' }}>{bestStreak}</div>
-                      <div style={{ color: '#555', fontSize: '10px' }}>best</div>
+                      <div style={{ color: 'var(--text-dim)', fontSize: '10px' }}>best</div>
                     </div>
                     <button
                       onClick={() => startEditing(habit)}

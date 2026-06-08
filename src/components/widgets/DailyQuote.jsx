@@ -40,7 +40,7 @@ export default function DailyQuote() {
   return (
     <div style={{ textAlign: 'center', padding: '8px 0' }}>
       <p style={{
-        color: '#e0e0e0',
+        color: 'var(--text)',
         fontSize: '18px',
         fontStyle: 'italic',
         lineHeight: '1.6',
@@ -54,8 +54,8 @@ export default function DailyQuote() {
         style={{
           padding: '8px 20px',
           background: 'none',
-          color: '#888',
-          border: '1px solid #2a2d3e',
+          color: 'var(--text-muted)',
+          border: '1px solid var(--border)',
           borderRadius: '8px',
           cursor: 'pointer',
           fontSize: '13px'

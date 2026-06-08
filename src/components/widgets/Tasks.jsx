@@ -62,8 +62,8 @@ const addTask = async () => {
           style={{
             flex: 1,
             padding: '8px 12px',
-            background: '#0f1117',
-            border: '1px solid #2a2d3e',
+            background: 'var(--card-inner)',
+            border: '1px solid var(--border)',
             borderRadius: '8px',
             color: '#fff',
             fontSize: '14px'
@@ -86,9 +86,9 @@ const addTask = async () => {
       </div>
 
       {loading ? (
-        <p style={{ color: '#888' }}>Loading...</p>
+        <p style={{ color: 'var(--text-muted)' }}>Loading...</p>
       ) : tasks.length === 0 ? (
-        <p style={{ color: '#888', fontSize: '14px' }}>No tasks yet. Add one above!</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>No tasks yet. Add one above!</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {tasks.map(task => (
@@ -97,7 +97,7 @@ const addTask = async () => {
               alignItems: 'center',
               gap: '10px',
               padding: '10px',
-              background: '#0f1117',
+              background: 'var(--card-inner)',
               borderRadius: '8px'
             }}>
               <input

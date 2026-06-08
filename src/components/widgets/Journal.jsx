@@ -85,7 +85,7 @@ export default function Journal({ session }) {
 
       {view === 'write' ? (
         <div>
-          <p style={{ color: '#888', fontSize: '13px', marginBottom: '12px' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '12px' }}>
             {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
           <textarea
@@ -96,8 +96,8 @@ export default function Journal({ session }) {
             style={{
               width: '100%',
               padding: '12px',
-              background: '#0f1117',
-              border: '1px solid #2a2d3e',
+              background: 'var(--card-inner)',
+              border: '1px solid var(--border)',
               borderRadius: '8px',
               color: '#fff',
               fontSize: '14px',
@@ -126,9 +126,9 @@ export default function Journal({ session }) {
         <div style={{ display: 'flex', gap: '16px' }}>
           <div style={{ width: '200px', flexShrink: 0 }}>
             {loading ? (
-              <p style={{ color: '#888' }}>Loading...</p>
+              <p style={{ color: 'var(--text-muted)' }}>Loading...</p>
             ) : entries.length === 0 ? (
-              <p style={{ color: '#888', fontSize: '13px' }}>No entries yet!</p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>No entries yet!</p>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '300px', overflowY: 'auto' }}>
                 {entries.map(entry => (
@@ -154,9 +154,9 @@ export default function Journal({ session }) {
           </div>
 
           {selectedEntry && (
-            <div style={{ flex: 1, background: '#0f1117', borderRadius: '8px', padding: '16px' }}>
+            <div style={{ flex: 1, background: 'var(--card-inner)', borderRadius: '8px', padding: '16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <p style={{ color: '#888', fontSize: '13px' }}>{formatDate(selectedEntry.created_at)}</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>{formatDate(selectedEntry.created_at)}</p>
                 <button
                   onClick={() => deleteEntry(selectedEntry.id)}
                   style={{ background: 'none', border: 'none', color: '#ff4d4d', cursor: 'pointer', fontSize: '13px' }}
@@ -164,7 +164,7 @@ export default function Journal({ session }) {
                   Delete
                 </button>
               </div>
-              <p style={{ color: '#e0e0e0', fontSize: '14px', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
+              <p style={{ color: 'var(--text)', fontSize: '14px', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
                 {selectedEntry.content}
               </p>
             </div>

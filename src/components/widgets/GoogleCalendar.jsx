@@ -156,8 +156,8 @@ export default function GoogleCalendar() {
   const inputStyle = {
     width: '100%',
     padding: '7px 10px',
-    background: '#0f1117',
-    border: '1px solid #2a2d3e',
+    background: 'var(--card-inner)',
+    border: '1px solid var(--border)',
     borderRadius: '6px',
     color: '#fff',
     fontSize: '13px',
@@ -167,7 +167,7 @@ export default function GoogleCalendar() {
   if (!token) {
     return (
       <div style={{ textAlign: 'center', padding: '16px 0' }}>
-        <p style={{ color: '#888', fontSize: '13px', marginBottom: '16px' }}>Connect your Google Calendar to see upcoming events.</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px' }}>Connect your Google Calendar to see upcoming events.</p>
         {error && <p style={{ color: '#ff4d4d', fontSize: '13px', marginBottom: '12px' }}>{error}</p>}
         <button onClick={() => login()} style={{ padding: '10px 20px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', margin: '0 auto', display: 'block' }}>
           Connect Google Calendar
@@ -186,17 +186,17 @@ export default function GoogleCalendar() {
     <div>
       {/* Month Navigation */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-        <button onClick={prevMonth} style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: '18px' }}>‹</button>
+        <button onClick={prevMonth} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '18px' }}>‹</button>
         <span style={{ color: '#fff', fontSize: '15px', fontWeight: '500' }}>
           {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
         </span>
-        <button onClick={nextMonth} style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: '18px' }}>›</button>
+        <button onClick={nextMonth} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '18px' }}>›</button>
       </div>
 
       {/* Day Labels */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', marginBottom: '4px' }}>
         {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d => (
-          <div key={d} style={{ textAlign: 'center', color: '#555', fontSize: '11px', padding: '4px 0' }}>{d}</div>
+          <div key={d} style={{ textAlign: 'center', color: 'var(--text-dim)', fontSize: '11px', padding: '4px 0' }}>{d}</div>
         ))}
       </div>
 
@@ -237,7 +237,7 @@ export default function GoogleCalendar() {
 
       {/* Add Event Form */}
       {showAddEvent && (
-        <div style={{ background: '#0f1117', borderRadius: '8px', padding: '12px', marginBottom: '12px' }}>
+        <div style={{ background: 'var(--card-inner)', borderRadius: '8px', padding: '12px', marginBottom: '12px' }}>
           <input type="text" placeholder="Event title..." value={newEvent.summary} onChange={e => setNewEvent({ ...newEvent, summary: e.target.value })} style={inputStyle} />
           <input type="date" value={newEvent.date} onChange={e => setNewEvent({ ...newEvent, date: e.target.value })} style={inputStyle} />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
@@ -252,7 +252,7 @@ export default function GoogleCalendar() {
 
       {/* Edit Event Form */}
       {editingEvent && (
-        <div style={{ background: '#0f1117', borderRadius: '8px', padding: '12px', marginBottom: '12px' }}>
+        <div style={{ background: 'var(--card-inner)', borderRadius: '8px', padding: '12px', marginBottom: '12px' }}>
             <p style={{ color: '#aaa', fontSize: '12px', marginBottom: '8px' }}>Editing event</p>
             <input
                 type="text"
@@ -275,7 +275,7 @@ export default function GoogleCalendar() {
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
             <div>
-                <p style={{ color: '#555', fontSize: '11px', marginBottom: '4px' }}>Start</p>
+                <p style={{ color: 'var(--text-dim)', fontSize: '11px', marginBottom: '4px' }}>Start</p>
             <input
                 type="datetime-local"
                 value={editingEvent.start.dateTime?.slice(0, 16)}
@@ -287,7 +287,7 @@ export default function GoogleCalendar() {
             />
         </div>
         <div>
-          <p style={{ color: '#555', fontSize: '11px', marginBottom: '4px' }}>End</p>
+          <p style={{ color: 'var(--text-dim)', fontSize: '11px', marginBottom: '4px' }}>End</p>
           <input
             type="datetime-local"
             value={editingEvent.end.dateTime?.slice(0, 16)}
@@ -309,19 +309,19 @@ export default function GoogleCalendar() {
 
       {/* Upcoming Events */}
       {loading ? (
-        <p style={{ color: '#888', fontSize: '13px' }}>Loading events...</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Loading events...</p>
       ) : upcomingEvents.length === 0 ? (
-        <p style={{ color: '#888', fontSize: '13px' }}>No upcoming events.</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>No upcoming events.</p>
       ) : (
         <>
-          <p style={{ color: '#555', fontSize: '11px', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Upcoming</p>
+          <p style={{ color: 'var(--text-dim)', fontSize: '11px', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Upcoming</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
             {upcomingEvents.map(event => (
-              <div key={event.id} style={{ padding: '8px 10px', background: '#0f1117', borderRadius: '6px', borderLeft: '3px solid var(--accent)' }}>
+              <div key={event.id} style={{ padding: '8px 10px', background: 'var(--card-inner)', borderRadius: '6px', borderLeft: '3px solid var(--accent)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div>
-                    <p style={{ color: '#e0e0e0', fontSize: '12px', marginBottom: '2px' }}>{event.summary}</p>
-                    <p style={{ color: '#555', fontSize: '11px' }}>{formatEventTime(event)}</p>
+                    <p style={{ color: 'var(--text)', fontSize: '12px', marginBottom: '2px' }}>{event.summary}</p>
+                    <p style={{ color: 'var(--text-dim)', fontSize: '11px' }}>{formatEventTime(event)}</p>
                   </div>
                   <div style={{ display: 'flex', gap: '6px' }}>
                     <button onClick={() => setEditingEvent(event)} style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontSize: '13px' }}>✎</button>
@@ -334,7 +334,7 @@ export default function GoogleCalendar() {
         </>
       )}
 
-      <button onClick={handleLogout} style={{ marginTop: '12px', padding: '6px 12px', background: 'none', color: '#555', border: '1px solid #2a2d3e', borderRadius: '6px', cursor: 'pointer', fontSize: '11px' }}>
+      <button onClick={handleLogout} style={{ marginTop: '12px', padding: '6px 12px', background: 'none', color: 'var(--text-dim)', border: '1px solid var(--border)', borderRadius: '6px', cursor: 'pointer', fontSize: '11px' }}>
         Disconnect Calendar
       </button>
     </div>

@@ -110,8 +110,8 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
   const inputStyle = {
     width: '100%',
     padding: '10px 14px',
-    background: '#0f1117',
-    border: '1px solid #2a2d3e',
+    background: 'var(--card-inner)',
+    border: '1px solid var(--border)',
     borderRadius: '8px',
     color: '#fff',
     fontSize: '14px'
@@ -129,7 +129,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
       padding: '24px'
     }}>
       <div style={{
-        background: '#1a1d2e',
+        background: 'var(--card)',
         borderRadius: '12px',
         width: '100%',
         maxWidth: '560px',
@@ -142,7 +142,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px 24px 0 24px' }}>
           <h2 style={{ color: '#fff', fontSize: '20px', margin: 0 }}>Settings</h2>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: '24px' }}>×</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '24px' }}>×</button>
         </div>
 
         {/* Tabs */}
@@ -164,9 +164,9 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                 </div>
               )}
 
-              <div style={{ background: '#0f1117', borderRadius: '8px', padding: '16px', marginBottom: '16px' }}>
-                <p style={{ color: '#555', fontSize: '12px', marginBottom: '4px' }}>Email</p>
-                <p style={{ color: '#888', fontSize: '14px' }}>{session.user.email}</p>
+              <div style={{ background: 'var(--card-inner)', borderRadius: '8px', padding: '16px', marginBottom: '16px' }}>
+                <p style={{ color: 'var(--text-dim)', fontSize: '12px', marginBottom: '4px' }}>Email</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{session.user.email}</p>
               </div>
 
               <div style={{ marginBottom: '24px' }}>
@@ -198,7 +198,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
               {/* Danger Zone */}
               <div style={{ border: '1px solid #ff4d4d44', borderRadius: '8px', padding: '16px' }}>
                 <h3 style={{ color: '#ff4d4d', fontSize: '15px', marginBottom: '8px' }}>Danger Zone</h3>
-                <p style={{ color: '#888', fontSize: '13px', marginBottom: '16px' }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px' }}>
                   Permanently delete your account and all your data. This cannot be undone.
                 </p>
                 {!confirmDelete ? (
@@ -236,11 +236,11 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
           {/* Widgets Tab */}
           {activeTab === 'widgets' && (
             <div>
-              <p style={{ color: '#888', fontSize: '13px', marginBottom: '16px' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px' }}>
                 Toggle widgets on or off. Disabled widgets will be hidden from your dashboard.
               </p>
               {loadingPrefs ? (
-                <p style={{ color: '#888' }}>Loading...</p>
+                <p style={{ color: 'var(--text-muted)' }}>Loading...</p>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {WIDGETS.map(widget => (
@@ -249,12 +249,12 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       padding: '12px 16px',
-                      background: '#0f1117',
+                      background: 'var(--card-inner)',
                       borderRadius: '8px'
                     }}>
                       <div>
-                        <p style={{ color: '#e0e0e0', fontSize: '14px', marginBottom: '2px' }}>{widget.label}</p>
-                        <p style={{ color: '#555', fontSize: '12px' }}>{widget.description}</p>
+                        <p style={{ color: 'var(--text)', fontSize: '14px', marginBottom: '2px' }}>{widget.label}</p>
+                        <p style={{ color: 'var(--text-dim)', fontSize: '12px' }}>{widget.description}</p>
                       </div>
                       <div
                         onClick={() => toggleWidget(widget.id)}

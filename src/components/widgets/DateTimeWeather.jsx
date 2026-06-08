@@ -54,7 +54,7 @@ export default function DateTimeWeather() {
         <div style={{ textAlign: 'center', fontSize: '40px', fontWeight: 'bold', color: '#fff', lineHeight: 1 }}>
           {formatTime(time)}
         </div>
-        <div style={{ textAlign: 'center', fontSize: '14px', color: '#888', marginTop: '6px' }}>
+        <div style={{ textAlign: 'center', fontSize: '14px', color: 'var(--text-muted)', marginTop: '6px' }}>
           {formatDate(time)}
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function DateTimeWeather() {
         {quote && (
           <>
             <p style={{
-              color: '#e0e0e0',
+              color: 'var(--text)',
               fontSize: '13px',
               fontStyle: 'italic',
               lineHeight: '1.5',
@@ -79,8 +79,8 @@ export default function DateTimeWeather() {
                 marginTop: '8px',
                 padding: '4px 12px',
                 background: 'none',
-                color: '#555',
-                border: '1px solid #2a2d3e',
+                color: 'var(--text-dim)',
+                border: '1px solid var(--border)',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 fontSize: '11px'
@@ -99,7 +99,7 @@ export default function DateTimeWeather() {
             <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#fff' }}>
               {Math.round(weather.main.temp)}°F
             </div>
-            <div style={{ fontSize: '14px', color: '#888', textTransform: 'capitalize' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-muted)', textTransform: 'capitalize' }}>
               {weather.weather[0].description}
             </div>
             <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
@@ -107,7 +107,7 @@ export default function DateTimeWeather() {
             </div>
           </>
         ) : (
-          <div style={{ color: '#555', fontSize: '13px' }}>Weather loading...</div>
+          <div style={{ color: 'var(--text-dim)', fontSize: '13px' }}>Weather loading...</div>
         )}
       </div>
     </div>

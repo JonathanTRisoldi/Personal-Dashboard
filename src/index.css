@@ -4,10 +4,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  --accent: #6c63ff;
+  --bg: #0f1117;
+  --card: #1a1d2e;
+  --card-inner: #0f1117;
+  --border: #2a2d3e;
+  --text: #e0e0e0;
+  --text-muted: #888;
+  --text-dim: #555;
+}
+
+[data-theme="light"] {
+  --bg: #f0f2f5;
+  --card: #ffffff;
+  --card-inner: #f5f7fa;
+  --border: #e0e0e0;
+  --text: #1a1d2e;
+  --text-muted: #666;
+  --text-dim: #999;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #0f1117;
-  color: #e0e0e0;
+  background-color: var(--bg);
+  color: var(--text);
   min-height: 100vh;
 }
 
@@ -16,26 +37,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1d2e;
+  background: var(--card);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3a3f5c;
+  background: var(--border);
   border-radius: 3px;
 }
 
 input, textarea, button {
   font-family: inherit;
 }
-
-[data-theme="light"] {
-  background-color: #f0f2f5;
-  color: #1a1d2e;
-}
-
-[data-theme="light"] input,
-[data-theme="light"] textarea {
-  background: #ffffff;
-  color: #1a1d2e;
-  border-color: #ddd;
-} 

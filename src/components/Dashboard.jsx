@@ -180,7 +180,7 @@ export default function Dashboard({ session }) {
           )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {!isMobile && <span style={{ color: '#888', fontSize: '14px' }}>{session.user.email}</span>}
+          {!isMobile && <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{session.user.email}</span>}
           <button
             onClick={() => setShowSettings(true)}
             style={{ padding: '8px 16px', background: '#2a2d3e', color: '#aaa', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}

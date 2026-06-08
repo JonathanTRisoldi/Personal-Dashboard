@@ -129,8 +129,8 @@ export default function Projects({ session }) {
           style={{
             width: '100%',
             padding: '8px 12px',
-            background: '#0f1117',
-            border: '1px solid #2a2d3e',
+            background: 'var(--card-inner)',
+            border: '1px solid var(--border)',
             borderRadius: '8px',
             color: '#fff',
             fontSize: '14px',
@@ -145,8 +145,8 @@ export default function Projects({ session }) {
           style={{
             width: '100%',
             padding: '8px 12px',
-            background: '#0f1117',
-            border: '1px solid #2a2d3e',
+            background: 'var(--card-inner)',
+            border: '1px solid var(--border)',
             borderRadius: '8px',
             color: '#fff',
             fontSize: '14px',
@@ -171,9 +171,9 @@ export default function Projects({ session }) {
       </div>
 
       {loading ? (
-        <p style={{ color: '#888' }}>Loading...</p>
+        <p style={{ color: 'var(--text-muted)' }}>Loading...</p>
       ) : projects.length === 0 ? (
-        <p style={{ color: '#888', fontSize: '14px' }}>No projects yet!</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>No projects yet!</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: window.innerWidth < 768 ? 'column' : 'row', gap: '16px' }}>
           <div style={{ flex: 1 }}>
@@ -202,7 +202,7 @@ export default function Projects({ session }) {
                         style={{
                           width: '100%',
                           padding: '6px 10px',
-                          background: '#1a1d2e',
+                          background: 'var(--card)',
                           border: '1px solid var(--accent)',
                           borderRadius: '6px',
                           color: '#fff',
@@ -218,8 +218,8 @@ export default function Projects({ session }) {
                         style={{
                           width: '100%',
                           padding: '6px 10px',
-                          background: '#1a1d2e',
-                          border: '1px solid #2a2d3e',
+                          background: 'var(--card)',
+                          border: '1px solid var(--border)',
                           borderRadius: '6px',
                           color: '#fff',
                           fontSize: '13px',
@@ -283,10 +283,10 @@ export default function Projects({ session }) {
                       )}
                       <div style={{ marginTop: '8px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                          <span style={{ color: '#888', fontSize: '11px' }}>{progress}% complete</span>
-                          <span style={{ color: '#888', fontSize: '11px' }}>{project.project_steps?.length || 0} steps</span>
+                          <span style={{ color: 'var(--text-muted)', fontSize: '11px' }}>{progress}% complete</span>
+                          <span style={{ color: 'var(--text-muted)', fontSize: '11px' }}>{project.project_steps?.length || 0} steps</span>
                         </div>
-                        <div style={{ background: '#1a1d2e', borderRadius: '4px', height: '4px' }}>
+                        <div style={{ background: 'var(--card)', borderRadius: '4px', height: '4px' }}>
                           <div style={{
                             background: progress === 100 ? '#4dff91' : 'var(--accent)',
                             width: `${progress}%`,
@@ -304,7 +304,7 @@ export default function Projects({ session }) {
           </div>
 
           {selectedProject && (
-            <div style={{ flex: 1, background: '#0f1117', borderRadius: '8px', padding: '16px' }}>
+            <div style={{ flex: 1, background: 'var(--card-inner)', borderRadius: '8px', padding: '16px' }}>
               <h3 style={{ color: '#fff', fontSize: '15px', marginBottom: '12px' }}>{selectedProject.title}</h3>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
                 <input
@@ -316,8 +316,8 @@ export default function Projects({ session }) {
                   style={{
                     flex: 1,
                     padding: '6px 10px',
-                    background: '#1a1d2e',
-                    border: '1px solid #2a2d3e',
+                    background: 'var(--card)',
+                    border: '1px solid var(--border)',
                     borderRadius: '6px',
                     color: '#fff',
                     fontSize: '13px'
@@ -339,7 +339,7 @@ export default function Projects({ session }) {
                 </button>
               </div>
               {selectedProject.project_steps?.length === 0 ? (
-                <p style={{ color: '#888', fontSize: '13px' }}>No steps yet. Add one above!</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>No steps yet. Add one above!</p>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {selectedProject.project_steps.map(step => (
@@ -348,7 +348,7 @@ export default function Projects({ session }) {
                       alignItems: 'center',
                       gap: '8px',
                       padding: '8px',
-                      background: '#1a1d2e',
+                      background: 'var(--card)',
                       borderRadius: '6px'
                     }}>
                       <input

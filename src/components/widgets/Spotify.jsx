@@ -155,7 +155,7 @@ export default function Spotify() {
   if (!token) {
     return (
       <div style={{ textAlign: 'center', padding: '16px 0' }}>
-        <p style={{ color: '#888', fontSize: '13px', marginBottom: '16px' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px' }}>
           Connect Spotify to control your music.
         </p>
         <button
@@ -181,8 +181,8 @@ export default function Spotify() {
     <div>
       {!current || !current.item ? (
         <div style={{ textAlign: 'center', padding: '16px 0' }}>
-          <p style={{ color: '#888', fontSize: '13px' }}>Nothing playing right now.</p>
-          <p style={{ color: '#555', fontSize: '12px', marginTop: '4px' }}>Open Spotify on any device to start playing!</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Nothing playing right now.</p>
+          <p style={{ color: 'var(--text-dim)', fontSize: '12px', marginTop: '4px' }}>Open Spotify on any device to start playing!</p>
         </div>
       ) : (
         <div>
@@ -207,7 +207,7 @@ export default function Spotify() {
                 {current.item.name}
               </p>
               <p style={{
-                color: '#888',
+                color: 'var(--text-muted)',
                 fontSize: '12px',
                 marginTop: '2px',
                 whiteSpace: 'nowrap',
@@ -216,7 +216,7 @@ export default function Spotify() {
               }}>
                 {current.item.artists.map(a => a.name).join(', ')}
               </p>
-              <p style={{ color: '#555', fontSize: '11px', marginTop: '2px' }}>
+              <p style={{ color: 'var(--text-dim)', fontSize: '11px', marginTop: '2px' }}>
                 {current.item.album.name}
               </p>
             </div>
@@ -234,8 +234,8 @@ export default function Spotify() {
               }} />
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#555', fontSize: '11px' }}>{formatTime(progress)}</span>
-              <span style={{ color: '#555', fontSize: '11px' }}>{formatTime(current.item.duration_ms)}</span>
+              <span style={{ color: 'var(--text-dim)', fontSize: '11px' }}>{formatTime(progress)}</span>
+              <span style={{ color: 'var(--text-dim)', fontSize: '11px' }}>{formatTime(current.item.duration_ms)}</span>
             </div>
           </div>
 
@@ -243,7 +243,7 @@ export default function Spotify() {
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
             <button
               onClick={() => controlPlayback('prev')}
-              style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: '20px' }}
+              style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '20px' }}
             >
               ⏮
             </button>
@@ -267,7 +267,7 @@ export default function Spotify() {
             </button>
             <button
               onClick={() => controlPlayback('next')}
-              style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: '20px' }}
+              style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '20px' }}
             >
               ⏭
             </button>
@@ -281,8 +281,8 @@ export default function Spotify() {
           marginTop: '16px',
           padding: '6px 12px',
           background: 'none',
-          color: '#555',
-          border: '1px solid #2a2d3e',
+          color: 'var(--text-dim)',
+          border: '1px solid var(--border)',
           borderRadius: '6px',
           cursor: 'pointer',
           fontSize: '11px'

@@ -52,8 +52,8 @@ export default function Notes({ session }) {
           style={{
             width: '100%',
             padding: '10px 12px',
-            background: '#0f1117',
-            border: '1px solid #2a2d3e',
+            background: 'var(--card-inner)',
+            border: '1px solid var(--border)',
             borderRadius: '8px',
             color: '#fff',
             fontSize: '14px',
@@ -79,23 +79,23 @@ export default function Notes({ session }) {
       </div>
 
       {loading ? (
-        <p style={{ color: '#888' }}>Loading...</p>
+        <p style={{ color: 'var(--text-muted)' }}>Loading...</p>
       ) : notes.length === 0 ? (
-        <p style={{ color: '#888', fontSize: '14px' }}>No notes yet!</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>No notes yet!</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '300px', overflowY: 'auto' }}>
           {notes.map(note => (
             <div key={note.id} style={{
               padding: '12px',
-              background: '#0f1117',
+              background: 'var(--card-inner)',
               borderRadius: '8px',
               position: 'relative'
             }}>
-              <p style={{ fontSize: '14px', color: '#e0e0e0', marginBottom: '6px', whiteSpace: 'pre-wrap' }}>
+              <p style={{ fontSize: '14px', color: 'var(--text)', marginBottom: '6px', whiteSpace: 'pre-wrap' }}>
                 {note.content}
               </p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '11px', color: '#555' }}>{formatDate(note.created_at)}</span>
+                <span style={{ fontSize: '11px', color: 'var(--text-dim)' }}>{formatDate(note.created_at)}</span>
                 <button
                   onClick={() => deleteNote(note.id)}
                   style={{

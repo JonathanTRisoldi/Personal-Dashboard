@@ -90,7 +90,7 @@ export default function RSSFeed() {
             padding: '6px 14px',
             background: managing ? '#2a2d3e' : 'none',
             color: 'var(--accent)',
-            border: '1px solid #2a2d3e',
+            border: '1px solid var(--border)',
             borderRadius: '6px',
             cursor: 'pointer',
             fontSize: '13px'
@@ -103,7 +103,7 @@ export default function RSSFeed() {
       {/* Manage Feeds */}
       {managing && (
         <div style={{
-          background: '#0f1117',
+          background: 'var(--card-inner)',
           borderRadius: '8px',
           padding: '16px',
           marginBottom: '16px'
@@ -118,8 +118,8 @@ export default function RSSFeed() {
                 flex: 1,
                 minWidth: '120px',
                 padding: '7px 10px',
-                background: '#1a1d2e',
-                border: '1px solid #2a2d3e',
+                background: 'var(--card)',
+                border: '1px solid var(--border)',
                 borderRadius: '6px',
                 color: '#fff',
                 fontSize: '13px'
@@ -134,8 +134,8 @@ export default function RSSFeed() {
                 flex: 2,
                 minWidth: '200px',
                 padding: '7px 10px',
-                background: '#1a1d2e',
-                border: '1px solid #2a2d3e',
+                background: 'var(--card)',
+                border: '1px solid var(--border)',
                 borderRadius: '6px',
                 color: '#fff',
                 fontSize: '13px'
@@ -163,10 +163,10 @@ export default function RSSFeed() {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '8px 12px',
-                background: '#1a1d2e',
+                background: 'var(--card)',
                 borderRadius: '6px'
               }}>
-                <span style={{ color: '#e0e0e0', fontSize: '13px' }}>{feed.name}</span>
+                <span style={{ color: 'var(--text)', fontSize: '13px' }}>{feed.name}</span>
                 <button
                   onClick={() => removeFeed(i)}
                   style={{ background: 'none', border: 'none', color: '#ff4d4d', cursor: 'pointer', fontSize: '16px' }}
@@ -181,9 +181,9 @@ export default function RSSFeed() {
 
       {/* Articles */}
       {loading ? (
-        <p style={{ color: '#888', fontSize: '14px' }}>Loading articles...</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Loading articles...</p>
       ) : articles.length === 0 ? (
-        <p style={{ color: '#888', fontSize: '14px' }}>No articles found.</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>No articles found.</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '400px', overflowY: 'auto' }}>
           {articles.map((article, i) => (
@@ -195,16 +195,16 @@ export default function RSSFeed() {
               style={{
                 display: 'block',
                 padding: '12px',
-                background: '#0f1117',
+                background: 'var(--card-inner)',
                 borderRadius: '8px',
                 textDecoration: 'none',
                 borderLeft: '3px solid var(--accent)'
               }}
             >
-              <p style={{ color: '#e0e0e0', fontSize: '14px', marginBottom: '4px', lineHeight: '1.4' }}>
+              <p style={{ color: 'var(--text)', fontSize: '14px', marginBottom: '4px', lineHeight: '1.4' }}>
                 {article.title}
               </p>
-              <span style={{ color: '#555', fontSize: '11px' }}>{formatDate(article.pubDate)}</span>
+              <span style={{ color: 'var(--text-dim)', fontSize: '11px' }}>{formatDate(article.pubDate)}</span>
             </a>
           ))}
         </div>

@@ -71,8 +71,8 @@ export default function Auth() {
   const inputStyle = {
     flex: 1,
     padding: '10px 14px',
-    background: '#0f1117',
-    border: '1px solid #2a2d3e',
+    background: 'var(--card-inner)',
+    border: '1px solid var(--border)',
     borderRadius: '8px',
     color: '#fff',
     fontSize: '15px',
@@ -97,7 +97,7 @@ export default function Auth() {
         transform: 'translateY(-50%)',
         background: 'none',
         border: 'none',
-        color: '#888',
+        color: 'var(--text-muted)',
         cursor: 'pointer',
         fontSize: '16px',
         padding: '0'
@@ -113,11 +113,11 @@ export default function Auth() {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100vh',
-      background: '#0f1117',
+      background: 'var(--card-inner)',
       padding: '24px'
     }}>
       <div style={{
-        background: '#1a1d2e',
+        background: 'var(--card)',
         padding: '40px',
         borderRadius: '12px',
         width: '100%',
@@ -125,7 +125,7 @@ export default function Auth() {
         boxShadow: '0 4px 24px rgba(0,0,0,0.4)'
       }}>
         <h1 style={{ textAlign: 'center', marginBottom: '8px', color: '#fff' }}>NexusBase</h1>
-        <p style={{ textAlign: 'center', color: '#888', marginBottom: '16px' }}>
+        <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '16px' }}>
           {isReset ? 'Reset your password' : isLogin ? 'Welcome back!' : 'Create your account'}
         </p>
 
@@ -231,21 +231,21 @@ export default function Auth() {
         </button>
 
         {isReset ? (
-          <p style={{ textAlign: 'center', color: '#888', fontSize: '14px' }}>
+          <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '14px' }}>
             <span onClick={() => { setIsReset(false); setError(null); setMessage(null) }} style={{ color: 'var(--accent)', cursor: 'pointer' }}>
               Back to Sign In
             </span>
           </p>
         ) : (
           <>
-            <p style={{ textAlign: 'center', color: '#888', fontSize: '14px', marginBottom: '8px' }}>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '14px', marginBottom: '8px' }}>
               {isLogin ? "Don't have an account? " : 'Already have an account? '}
               <span onClick={() => { setIsLogin(!isLogin); setError(null); setMessage(null) }} style={{ color: 'var(--accent)', cursor: 'pointer' }}>
                 {isLogin ? 'Sign Up' : 'Sign In'}
               </span>
             </p>
             {isLogin && (
-              <p style={{ textAlign: 'center', color: '#888', fontSize: '14px' }}>
+              <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '14px' }}>
                 <span onClick={() => { setIsReset(true); setError(null); setMessage(null) }} style={{ color: 'var(--accent)', cursor: 'pointer' }}>
                   Forgot your password?
                 </span>

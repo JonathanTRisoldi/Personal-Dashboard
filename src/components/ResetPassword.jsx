@@ -31,11 +31,11 @@ export default function ResetPassword() {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100vh',
-      background: '#0f1117',
+      background: 'var(--card-inner)',
       padding: '24px'
     }}>
       <div style={{
-        background: '#1a1d2e',
+        background: 'var(--card)',
         padding: '40px',
         borderRadius: '12px',
         width: '100%',
@@ -43,7 +43,7 @@ export default function ResetPassword() {
         boxShadow: '0 4px 24px rgba(0,0,0,0.4)'
       }}>
         <h1 style={{ textAlign: 'center', marginBottom: '8px', color: '#fff' }}>Reset Password</h1>
-        <p style={{ textAlign: 'center', color: '#888', marginBottom: '24px' }}>Enter your new password below.</p>
+        <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '24px' }}>Enter your new password below.</p>
 
         {error && (
           <div style={{ background: '#ff4d4d22', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '10px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px' }}>
@@ -63,7 +63,7 @@ export default function ResetPassword() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: '100%', padding: '10px 14px', background: '#0f1117', border: '1px solid #2a2d3e', borderRadius: '8px', color: '#fff', fontSize: '15px' }}
+            style={{ width: '100%', padding: '10px 14px', background: 'var(--card-inner)', border: '1px solid var(--border)', borderRadius: '8px', color: '#fff', fontSize: '15px' }}
           />
         </div>
 
@@ -73,7 +73,7 @@ export default function ResetPassword() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            style={{ width: '100%', padding: '10px 14px', background: '#0f1117', border: '1px solid #2a2d3e', borderRadius: '8px', color: '#fff', fontSize: '15px' }}
+            style={{ width: '100%', padding: '10px 14px', background: 'var(--card-inner)', border: '1px solid var(--border)', borderRadius: '8px', color: '#fff', fontSize: '15px' }}
           />
         </div>
 

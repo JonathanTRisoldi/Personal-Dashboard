@@ -4,7 +4,7 @@ export default function Widget({ title, children, defaultOpen = true, dragHandle
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   return (
-    <div style={{ background: '#1a1d2e', borderRadius: '12px', overflow: 'hidden' }}>
+    <div style={{ background: 'var(--card)', borderRadius: '12px', overflow: 'hidden' }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -66,7 +66,7 @@ export default function Widget({ title, children, defaultOpen = true, dragHandle
         <span
           onClick={() => setIsOpen(!isOpen)}
           style={{
-            color: '#888',
+            color: 'var(--text-muted)',
             fontSize: '18px',
             transition: 'transform 0.2s ease',
             transform: isOpen ? 'rotate(0deg)' : 'rotate(-90deg)',
