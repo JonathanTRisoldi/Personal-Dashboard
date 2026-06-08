@@ -13,7 +13,7 @@ const WIDGETS = [
 ]
 
 const ACCENT_COLORS = [
-  { label: 'Purple', value: 'var(--accent)' },
+  { label: 'Purple', value: '#6c63ff' },
   { label: 'Blue', value: '#3b82f6' },
   { label: 'Green', value: '#10b981' },
   { label: 'Pink', value: '#ec4899' },
