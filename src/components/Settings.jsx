@@ -355,4 +355,4 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
       </div>
     </div>
   )
-}
+} 
