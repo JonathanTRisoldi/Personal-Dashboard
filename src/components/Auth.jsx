@@ -96,19 +96,19 @@ export default function Auth() {
 
         {/* Privacy Notice */}
         {!isLogin && !isReset && (
-          <div style={{
-            background: '#6c63ff22',
-            border: '1px solid #6c63ff44',
-            borderRadius: '8px',
-            padding: '10px 14px',
-            marginBottom: '16px',
-            fontSize: '12px',
-            color: '#aaa',
-            textAlign: 'center'
-          }}>
-            By signing up you agree that your data is stored securely and is only accessible by you.
-            We do not sell or share your personal information.
-          </div>
+            <div style={{
+                background: '#6c63ff22',
+                border: '1px solid #6c63ff44',
+                borderRadius: '8px',
+                padding: '10px 14px',
+                marginBottom: '16px',
+                fontSize: '12px',
+                color: '#aaa',
+                textAlign: 'center'
+            }}>
+                By signing up you agree to our use of your data to power your personal dashboard.
+            Your data is stored securely and is never sold or shared with third parties.
+            </div>
         )}
 
         {error && (
