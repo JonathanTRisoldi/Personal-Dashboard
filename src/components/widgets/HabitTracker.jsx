@@ -55,16 +55,18 @@ export default function HabitTracker({ session }) {
   }
 
   const toggleToday = async (habit) => {
-    const today = new Date().toISOString().split('T')[0]
-    const alreadyDone = habit.habit_completions.some(c => c.completed_date === today)
+    const today = new Date()
+    const localToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+    const alreadyDone = habit.habit_completions.some(c => c.completed_date === localToday)
+
     if (alreadyDone) {
-      await supabase.from('habit_completions').delete().eq('habit_id', habit.id).eq('completed_date', today)
+      await supabase.from('habit_completions').delete().eq('habit_id', habit.id).eq('completed_date', localToday)
       setHabits(habits.map(h => h.id === habit.id ? {
         ...h,
-        habit_completions: h.habit_completions.filter(c => c.completed_date !== today)
+        habit_completions: h.habit_completions.filter(c => c.completed_date !== localToday)
       } : h))
     } else {
-      const { data } = await supabase.from('habit_completions').insert({ habit_id: habit.id, completed_date: today }).select()
+      const { data } = await supabase.from('habit_completions').insert({ habit_id: habit.id, completed_date: localToday }).select()
       if (data && data[0]) {
         setHabits(habits.map(h => h.id === habit.id ? {
           ...h,
@@ -116,8 +118,9 @@ export default function HabitTracker({ session }) {
   }
 
   const isCompletedToday = (completions) => {
-    const today = new Date().toISOString().split('T')[0]
-    return completions.some(c => c.completed_date === today)
+    const today = new Date()
+    const localToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+    return completions.some(c => c.completed_date === localToday)
   }
 
   return (
