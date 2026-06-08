@@ -29,13 +29,13 @@ import {
 
 const DEFAULT_LEFT = ['datetime', 'tasks-notes', 'projects', 'journal', 'habits']
 const DEFAULT_RIGHT = ['spotify', 'calendar', 'news']
-const [showSettings, setShowSettings] = useState(false)
 
 export default function Dashboard({ session }) {
   const { displayName, updateDisplayName, loading } = useProfile(session)
   const [editingName, setEditingName] = useState(false)
   const [tempName, setTempName] = useState('')
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const [showSettings, setShowSettings] = useState(false)
   const [leftOrder, setLeftOrder] = useState(() => {
     const saved = localStorage.getItem('left_order')
     return saved ? JSON.parse(saved) : DEFAULT_LEFT
@@ -59,13 +59,9 @@ export default function Dashboard({ session }) {
     localStorage.setItem('right_order', JSON.stringify(rightOrder))
   }, [rightOrder])
 
-const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: { distance: 8 }
-    }),
-    useSensor(TouchSensor, {
-      activationConstraint: { delay: 500, tolerance: 10 }
-    })
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 500, tolerance: 10 } })
   )
 
   const handleLogout = async () => {
@@ -153,27 +149,17 @@ const sensors = useSensors(
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {!isMobile && <span style={{ color: '#888', fontSize: '14px' }}>{session.user.email}</span>}
           <button
+            onClick={() => setShowSettings(true)}
+            style={{ padding: '8px 16px', background: '#2a2d3e', color: '#aaa', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+          >
+            ⚙️ Settings
+          </button>
+          <button
             onClick={handleLogout}
             style={{ padding: '8px 16px', background: '#ff4d4d33', color: '#ff4d4d', border: '1px solid #ff4d4d44', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
           >
             Sign Out
           </button>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            {!isMobile && <span style={{ color: '#888', fontSize: '14px' }}>{session.user.email}</span>}
-            <button
-                onClick={() => setShowSettings(true)}
-                style={{ padding: '8px 16px', background: '#2a2d3e', color: '#aaa', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
-            >
-                ⚙️ Settings
-            </button>
-            <button
-                onClick={handleLogout}
-                style={{ padding: '8px 16px', background: '#ff4d4d33', color: '#ff4d4d', border: '1px solid #ff4d4d44', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
-            >
-                Sign Out
-            </button>
-        {showSettings && <Settings session={session} onClose={() => setShowSettings(false)} />}
         </div>
       </div>
 
@@ -187,99 +173,101 @@ const sensors = useSensors(
         {/* Left Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <Widget title="Date, Time & Weather">
-  <DateTimeWeather />
-</Widget>
+            <DateTimeWeather />
+          </Widget>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleLeftDragEnd}>
-  <SortableContext items={leftOrder.filter(id => id !== 'datetime')} strategy={verticalListSortingStrategy}>
-    {leftOrder.filter(id => id !== 'datetime').map((id, index) => {
-      const filteredOrder = leftOrder.filter(i => i !== 'datetime')
-      const widgetProps = {
-        isMobile,
-        isFirst: index === 0,
-        isLast: index === filteredOrder.length - 1,
-        onMoveUp: () => setLeftOrder(prev => {
-          const filtered = prev.filter(i => i !== 'datetime')
-          const newOrder = arrayMove(filtered, index, index - 1)
-          return ['datetime', ...newOrder]
-        }),
-        onMoveDown: () => setLeftOrder(prev => {
-          const filtered = prev.filter(i => i !== 'datetime')
-          const newOrder = arrayMove(filtered, index, index + 1)
-          return ['datetime', ...newOrder]
-        })
-      }
-      const widgets = {
-        'tasks-notes': (
-          <DraggableWidget key="tasks-notes" id="tasks-notes" title="Tasks & Notes" defaultOpen={!isMobile} {...widgetProps}>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px' }}>
-              <div>
-                <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Tasks</h3>
-                <Tasks session={session} />
-              </div>
-              <div>
-                <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Notes</h3>
-                <Notes session={session} />
-              </div>
-            </div>
-          </DraggableWidget>
-        ),
-        'projects': (
-          <DraggableWidget key="projects" id="projects" title="Projects" defaultOpen={!isMobile} {...widgetProps}>
-            <Projects session={session} />
-          </DraggableWidget>
-        ),
-        'journal': (
-          <DraggableWidget key="journal" id="journal" title="Daily Journal" defaultOpen={!isMobile} {...widgetProps}>
-            <Journal session={session} />
-          </DraggableWidget>
-        ),
-        'habits': (
-          <DraggableWidget key="habits" id="habits" title="Habit Tracker" defaultOpen={!isMobile} {...widgetProps}>
-            <HabitTracker session={session} />
-          </DraggableWidget>
-        )
-      }
-      return widgets[id]
-    })}
-  </SortableContext>
-</DndContext>
+            <SortableContext items={leftOrder.filter(id => id !== 'datetime')} strategy={verticalListSortingStrategy}>
+              {leftOrder.filter(id => id !== 'datetime').map((id, index) => {
+                const filteredOrder = leftOrder.filter(i => i !== 'datetime')
+                const widgetProps = {
+                  isMobile,
+                  isFirst: index === 0,
+                  isLast: index === filteredOrder.length - 1,
+                  onMoveUp: () => setLeftOrder(prev => {
+                    const filtered = prev.filter(i => i !== 'datetime')
+                    const newOrder = arrayMove(filtered, index, index - 1)
+                    return ['datetime', ...newOrder]
+                  }),
+                  onMoveDown: () => setLeftOrder(prev => {
+                    const filtered = prev.filter(i => i !== 'datetime')
+                    const newOrder = arrayMove(filtered, index, index + 1)
+                    return ['datetime', ...newOrder]
+                  })
+                }
+                const widgets = {
+                  'tasks-notes': (
+                    <DraggableWidget key="tasks-notes" id="tasks-notes" title="Tasks & Notes" defaultOpen={!isMobile} {...widgetProps}>
+                      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px' }}>
+                        <div>
+                          <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Tasks</h3>
+                          <Tasks session={session} />
+                        </div>
+                        <div>
+                          <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Notes</h3>
+                          <Notes session={session} />
+                        </div>
+                      </div>
+                    </DraggableWidget>
+                  ),
+                  'projects': (
+                    <DraggableWidget key="projects" id="projects" title="Projects" defaultOpen={!isMobile} {...widgetProps}>
+                      <Projects session={session} />
+                    </DraggableWidget>
+                  ),
+                  'journal': (
+                    <DraggableWidget key="journal" id="journal" title="Daily Journal" defaultOpen={!isMobile} {...widgetProps}>
+                      <Journal session={session} />
+                    </DraggableWidget>
+                  ),
+                  'habits': (
+                    <DraggableWidget key="habits" id="habits" title="Habit Tracker" defaultOpen={!isMobile} {...widgetProps}>
+                      <HabitTracker session={session} />
+                    </DraggableWidget>
+                  )
+                }
+                return widgets[id]
+              })}
+            </SortableContext>
+          </DndContext>
         </div>
 
         {/* Right Sidebar */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: isMobile ? 'static' : 'sticky', top: '24px' }}>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleRightDragEnd}>
-  <SortableContext items={rightOrder} strategy={verticalListSortingStrategy}>
-    {rightOrder.map((id, index) => {
-      const widgetProps = {
-        isMobile,
-        isFirst: index === 0,
-        isLast: index === rightOrder.length - 1,
-        onMoveUp: () => setRightOrder(prev => arrayMove(prev, index, index - 1)),
-        onMoveDown: () => setRightOrder(prev => arrayMove(prev, index, index + 1))
-      }
-      const widgets = {
-        'spotify': (
-          <DraggableWidget key="spotify" id="spotify" title="Spotify" defaultOpen={!isMobile} {...widgetProps}>
-            <Spotify />
-          </DraggableWidget>
-        ),
-        'calendar': (
-          <DraggableWidget key="calendar" id="calendar" title="Google Calendar" defaultOpen={!isMobile} {...widgetProps}>
-            <GoogleCalendar />
-          </DraggableWidget>
-        ),
-        'news': (
-          <DraggableWidget key="news" id="news" title="News Feed" defaultOpen={!isMobile} {...widgetProps}>
-            <RSSFeed />
-          </DraggableWidget>
-        )
-      }
-      return widgets[id]
-    })}
-  </SortableContext>
-</DndContext>
+            <SortableContext items={rightOrder} strategy={verticalListSortingStrategy}>
+              {rightOrder.map((id, index) => {
+                const widgetProps = {
+                  isMobile,
+                  isFirst: index === 0,
+                  isLast: index === rightOrder.length - 1,
+                  onMoveUp: () => setRightOrder(prev => arrayMove(prev, index, index - 1)),
+                  onMoveDown: () => setRightOrder(prev => arrayMove(prev, index, index + 1))
+                }
+                const widgets = {
+                  'spotify': (
+                    <DraggableWidget key="spotify" id="spotify" title="Spotify" defaultOpen={!isMobile} {...widgetProps}>
+                      <Spotify />
+                    </DraggableWidget>
+                  ),
+                  'calendar': (
+                    <DraggableWidget key="calendar" id="calendar" title="Google Calendar" defaultOpen={!isMobile} {...widgetProps}>
+                      <GoogleCalendar />
+                    </DraggableWidget>
+                  ),
+                  'news': (
+                    <DraggableWidget key="news" id="news" title="News Feed" defaultOpen={!isMobile} {...widgetProps}>
+                      <RSSFeed />
+                    </DraggableWidget>
+                  )
+                }
+                return widgets[id]
+              })}
+            </SortableContext>
+          </DndContext>
         </div>
       </div>
+
+      {showSettings && <Settings session={session} onClose={() => setShowSettings(false)} />}
     </div>
   )
 }
