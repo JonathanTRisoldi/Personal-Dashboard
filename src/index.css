@@ -27,3 +27,15 @@ body {
 input, textarea, button {
   font-family: inherit;
 }
+
+[data-theme="light"] {
+  background-color: #f0f2f5;
+  color: #1a1d2e;
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+  background: #ffffff;
+  color: #1a1d2e;
+  border-color: #ddd;
+}

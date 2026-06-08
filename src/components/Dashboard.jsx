@@ -36,6 +36,9 @@ export default function Dashboard({ session }) {
   const [tempName, setTempName] = useState('')
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const [showSettings, setShowSettings] = useState(false)
+  const [widgetPrefs, setWidgetPrefs] = useState({})
+  const [accentColor, setAccentColor] = useState(() => localStorage.getItem('accent_color') || '#6c63ff')
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
   const [leftOrder, setLeftOrder] = useState(() => {
     const saved = localStorage.getItem('left_order')
     return saved ? JSON.parse(saved) : DEFAULT_LEFT
@@ -58,6 +61,32 @@ export default function Dashboard({ session }) {
   useEffect(() => {
     localStorage.setItem('right_order', JSON.stringify(rightOrder))
   }, [rightOrder])
+
+  useEffect(() => {
+    localStorage.setItem('accent_color', accentColor)
+    document.documentElement.style.setProperty('--accent', accentColor)
+  }, [accentColor])
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
+  useEffect(() => {
+    fetchWidgetPrefs()
+  }, [])
+
+  const fetchWidgetPrefs = async () => {
+    const { data } = await supabase
+      .from('widget_preferences')
+      .select('*')
+      .eq('user_id', session.user.id)
+    const prefs = {}
+    const allWidgets = ['datetime', 'tasks-notes', 'projects', 'journal', 'habits', 'spotify', 'calendar', 'news']
+    allWidgets.forEach(w => { prefs[w] = true })
+    if (data) data.forEach(p => { prefs[p.widget_id] = p.enabled })
+    setWidgetPrefs(prefs)
+  }
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -99,8 +128,12 @@ export default function Dashboard({ session }) {
     }
   }
 
+  const bgColor = theme === 'light' ? '#f0f2f5' : '#0f1117'
+  const cardColor = theme === 'light' ? '#ffffff' : '#1a1d2e'
+  const textColor = theme === 'light' ? '#1a1d2e' : '#e0e0e0'
+
   return (
-    <div style={{ maxWidth: '1600px', margin: '0 auto', padding: isMobile ? '12px' : '24px' }}>
+    <div style={{ maxWidth: '1600px', margin: '0 auto', padding: isMobile ? '12px' : '24px', minHeight: '100vh', background: bgColor }}>
 
       {/* Header */}
       <div style={{
@@ -124,24 +157,24 @@ export default function Dashboard({ session }) {
                   autoFocus
                   style={{
                     padding: '6px 12px',
-                    background: '#1a1d2e',
-                    border: '1px solid #6c63ff',
+                    background: cardColor,
+                    border: `1px solid ${accentColor}`,
                     borderRadius: '8px',
-                    color: '#fff',
+                    color: textColor,
                     fontSize: isMobile ? '16px' : '24px',
                     fontWeight: 'bold',
                     width: isMobile ? '160px' : '250px'
                   }}
                 />
-                <button onClick={saveName} style={{ padding: '6px 14px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>Save</button>
+                <button onClick={saveName} style={{ padding: '6px 14px', background: accentColor, color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>Save</button>
                 <button onClick={() => setEditingName(false)} style={{ padding: '6px 14px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px' }}>Cancel</button>
               </div>
             ) : (
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <h1 style={{ color: '#fff', fontSize: isMobile ? '18px' : '24px' }}>
+                <h1 style={{ color: textColor, fontSize: isMobile ? '18px' : '24px' }}>
                   {getGreeting()}, {displayName || 'Friend'}!
                 </h1>
-                <button onClick={startEditingName} style={{ background: 'none', border: 'none', color: '#6c63ff', cursor: 'pointer', fontSize: '16px' }}>✎</button>
+                <button onClick={startEditingName} style={{ background: 'none', border: 'none', color: accentColor, cursor: 'pointer', fontSize: '16px' }}>✎</button>
               </div>
             )
           )}
@@ -153,12 +186,6 @@ export default function Dashboard({ session }) {
             style={{ padding: '8px 16px', background: '#2a2d3e', color: '#aaa', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
           >
             ⚙️ Settings
-          </button>
-          <button
-            onClick={handleLogout}
-            style={{ padding: '8px 16px', background: '#ff4d4d33', color: '#ff4d4d', border: '1px solid #ff4d4d44', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
-          >
-            Sign Out
           </button>
         </div>
       </div>
@@ -172,25 +199,29 @@ export default function Dashboard({ session }) {
       }}>
         {/* Left Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <Widget title="Date, Time & Weather">
-            <DateTimeWeather />
-          </Widget>
+          {widgetPrefs['datetime'] !== false && (
+            <Widget title="Date, Time & Weather" cardColor={cardColor} textColor={textColor}>
+              <DateTimeWeather />
+            </Widget>
+          )}
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleLeftDragEnd}>
             <SortableContext items={leftOrder.filter(id => id !== 'datetime')} strategy={verticalListSortingStrategy}>
               {leftOrder.filter(id => id !== 'datetime').map((id, index) => {
-                const filteredOrder = leftOrder.filter(i => i !== 'datetime')
+                if (widgetPrefs[id] === false) return null
+                const filteredOrder = leftOrder.filter(i => i !== 'datetime' && widgetPrefs[i] !== false)
+                const visibleIndex = filteredOrder.indexOf(id)
                 const widgetProps = {
                   isMobile,
-                  isFirst: index === 0,
-                  isLast: index === filteredOrder.length - 1,
+                  isFirst: visibleIndex === 0,
+                  isLast: visibleIndex === filteredOrder.length - 1,
                   onMoveUp: () => setLeftOrder(prev => {
                     const filtered = prev.filter(i => i !== 'datetime')
-                    const newOrder = arrayMove(filtered, index, index - 1)
+                    const newOrder = arrayMove(filtered, filtered.indexOf(id), filtered.indexOf(id) - 1)
                     return ['datetime', ...newOrder]
                   }),
                   onMoveDown: () => setLeftOrder(prev => {
                     const filtered = prev.filter(i => i !== 'datetime')
-                    const newOrder = arrayMove(filtered, index, index + 1)
+                    const newOrder = arrayMove(filtered, filtered.indexOf(id), filtered.indexOf(id) + 1)
                     return ['datetime', ...newOrder]
                   })
                 }
@@ -236,12 +267,15 @@ export default function Dashboard({ session }) {
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleRightDragEnd}>
             <SortableContext items={rightOrder} strategy={verticalListSortingStrategy}>
               {rightOrder.map((id, index) => {
+                if (widgetPrefs[id] === false) return null
+                const visibleOrder = rightOrder.filter(i => widgetPrefs[i] !== false)
+                const visibleIndex = visibleOrder.indexOf(id)
                 const widgetProps = {
                   isMobile,
-                  isFirst: index === 0,
-                  isLast: index === rightOrder.length - 1,
-                  onMoveUp: () => setRightOrder(prev => arrayMove(prev, index, index - 1)),
-                  onMoveDown: () => setRightOrder(prev => arrayMove(prev, index, index + 1))
+                  isFirst: visibleIndex === 0,
+                  isLast: visibleIndex === visibleOrder.length - 1,
+                  onMoveUp: () => setRightOrder(prev => arrayMove(prev, prev.indexOf(id), prev.indexOf(id) - 1)),
+                  onMoveDown: () => setRightOrder(prev => arrayMove(prev, prev.indexOf(id), prev.indexOf(id) + 1))
                 }
                 const widgets = {
                   'spotify': (
@@ -267,7 +301,17 @@ export default function Dashboard({ session }) {
         </div>
       </div>
 
-      {showSettings && <Settings session={session} onClose={() => setShowSettings(false)} />}
+      {showSettings && (
+        <Settings
+          session={session}
+          onClose={() => { setShowSettings(false); fetchWidgetPrefs() }}
+          onSignOut={handleLogout}
+          accentColor={accentColor}
+          onAccentColorChange={setAccentColor}
+          theme={theme}
+          onThemeChange={setTheme}
+        />
+      )}
     </div>
   )
 }
