@@ -230,7 +230,7 @@ export default function HabitTracker({ session }) {
                       </div>
                     ) : (
                       <span style={{
-                        color: doneToday ? '#4dff91' : '#e0e0e0',
+                        color: doneToday ? '#4dff91' : 'var(--text)',
                         fontSize: '15px',
                         fontWeight: '500',
                         textDecoration: doneToday ? 'line-through' : 'none'
@@ -275,7 +275,7 @@ export default function HabitTracker({ session }) {
                         width: '14px',
                         height: '14px',
                         borderRadius: '3px',
-                        background: day.completed ? '#4dff91' : '#1a1d2e',
+                        background: day.completed ? '#4dff91' : 'var(--border)',
                         flexShrink: 0
                       }}
                     />
