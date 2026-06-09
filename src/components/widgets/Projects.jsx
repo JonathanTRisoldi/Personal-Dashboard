@@ -186,7 +186,7 @@ export default function Projects({ session }) {
                   onClick={() => !isEditing && setSelectedProject(project)}
                   style={{
                     padding: '12px',
-                    background: selectedProject?.id === project.id ? '#2a2d3e' : '#0f1117',
+                    background: selectedProject?.id === project.id ? 'var(--border)' : 'var(--card-inner)',
                     borderRadius: '8px',
                     marginBottom: '8px',
                     cursor: isEditing ? 'default' : 'pointer',
