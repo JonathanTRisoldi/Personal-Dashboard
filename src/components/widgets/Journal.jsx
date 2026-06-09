@@ -137,7 +137,7 @@ export default function Journal({ session }) {
                     onClick={() => setSelectedEntry(entry)}
                     style={{
                       padding: '10px',
-                      background: selectedEntry?.id === entry.id ? '#2a2d3e' : '#0f1117',
+                      background: selectedEntry?.id === entry.id ? 'var(--border)' : 'var(--card-inner)',
                       borderRadius: '8px',
                       cursor: 'pointer',
                       border: selectedEntry?.id === entry.id ? '1px solid var(--accent)' : '1px solid transparent'
