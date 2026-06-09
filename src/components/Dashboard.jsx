@@ -183,7 +183,7 @@ export default function Dashboard({ session }) {
           {!isMobile && <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{session.user.email}</span>}
           <button
             onClick={() => setShowSettings(true)}
-            style={{ padding: '8px 16px', background: '#2a2d3e', color: 'var(--text-muted)', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+            style={{ padding: '8px 16px', background: 'var(--card)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
           >
             ⚙️ Settings
           </button>
