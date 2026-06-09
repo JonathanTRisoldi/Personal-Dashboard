@@ -112,7 +112,7 @@ export default function Journal({ session }) {
               width: '100%',
               padding: '10px',
               background: 'var(--accent)',
-              color: 'var(--text)',
+              color: '#fff',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',
