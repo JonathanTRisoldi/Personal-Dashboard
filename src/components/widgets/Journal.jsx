@@ -57,7 +57,7 @@ export default function Journal({ session }) {
             style={{
               padding: '6px 14px',
               background: view === 'write' ? 'var(--accent)' : '#0f1117',
-              color: 'var(--text)',
+              color: '#fff',
               border: 'none',
               borderRadius: '6px',
               cursor: 'pointer',
@@ -71,7 +71,7 @@ export default function Journal({ session }) {
             style={{
               padding: '6px 14px',
               background: view === 'entries' ? 'var(--accent)' : '#0f1117',
-              color: 'var(--text)',
+              color: '#fff',
               border: 'none',
               borderRadius: '6px',
               cursor: 'pointer',

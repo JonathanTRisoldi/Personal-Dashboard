@@ -299,7 +299,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
     flex: 1,
     padding: '12px',
     background: theme === 'dark' ? '#6c63ff' : '#1a1d2e',
-    color: 'var(--text)',
+    color: '#fff',
     border: theme === 'dark' ? '1px solid #6c63ff' : '1px solid #0f1117',
     borderRadius: '8px',
     cursor: 'pointer',

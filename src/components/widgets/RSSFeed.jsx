@@ -146,7 +146,7 @@ export default function RSSFeed() {
               style={{
                 padding: '7px 16px',
                 background: 'var(--accent)',
-                color: 'var(--text)',
+                color: '#fff',
                 border: 'none',
                 borderRadius: '6px',
                 cursor: 'pointer',
