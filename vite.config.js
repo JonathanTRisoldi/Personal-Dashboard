@@ -9,8 +9,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons.svg'],
       manifest: {
-        name: 'NexusBase',
-        short_name: 'NexusBase',
+        name: 'Nexio',
+        short_name: 'Nexio',
         description: 'Your personal dashboard',
         theme_color: '#0f1117',
         background_color: '#0f1117',

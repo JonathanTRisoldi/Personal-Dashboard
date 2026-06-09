@@ -124,7 +124,7 @@ export default function Auth() {
         maxWidth: '420px',
         boxShadow: '0 4px 24px rgba(0,0,0,0.4)'
       }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '8px', color: 'var(--text)' }}>NexusBase</h1>
+        <h1 style={{ textAlign: 'center', marginBottom: '8px', color: 'var(--text)' }}>Nexio</h1>
         <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '16px' }}>
           {isReset ? 'Reset your password' : isLogin ? 'Welcome back!' : 'Create your account'}
         </p>
