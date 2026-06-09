@@ -13,6 +13,7 @@ import Widget from './Widget'
 import DraggableWidget from './DraggableWidget'
 import useProfile from './ProfileSetup'
 import Settings from './Settings'
+import Bookmarks from './widgets/Bookmarks'
 import {
   DndContext,
   closestCenter,
@@ -27,7 +28,7 @@ import {
   arrayMove
 } from '@dnd-kit/sortable'
 
-const DEFAULT_LEFT = ['datetime', 'tasks-notes', 'projects', 'journal', 'habits']
+const DEFAULT_LEFT = ['datetime', 'tasks-notes', 'projects', 'journal', 'habits', 'bookmarks']
 const DEFAULT_RIGHT = ['spotify', 'calendar', 'news']
 
 export default function Dashboard({ session }) {
@@ -82,7 +83,7 @@ export default function Dashboard({ session }) {
       .select('*')
       .eq('user_id', session.user.id)
     const prefs = {}
-    const allWidgets = ['datetime', 'tasks-notes', 'projects', 'journal', 'habits', 'spotify', 'calendar', 'news']
+    const allWidgets = ['datetime', 'tasks-notes', 'projects', 'journal', 'habits', 'bookmarks', 'spotify', 'calendar', 'news']
     allWidgets.forEach(w => { prefs[w] = true })
     if (data) data.forEach(p => { prefs[p.widget_id] = p.enabled })
     setWidgetPrefs(prefs)
@@ -254,7 +255,12 @@ export default function Dashboard({ session }) {
                     <DraggableWidget key="habits" id="habits" title="Habit Tracker" defaultOpen={!isMobile} {...widgetProps}>
                       <HabitTracker session={session} />
                     </DraggableWidget>
-                  )
+                  ),
+                  'bookmarks': (
+                    <DraggableWidget key="bookmarks" id="bookmarks" title="Bookmarks" defaultOpen={!isMobile} {...widgetProps}>
+                      <Bookmarks session={session} />
+                    </DraggableWidget>
+                  )     
                 }
                 return widgets[id]
               })}

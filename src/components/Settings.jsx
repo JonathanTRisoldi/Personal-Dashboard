@@ -10,6 +10,7 @@ const WIDGETS = [
   { id: 'spotify', label: 'Spotify', description: 'Music player and controls' },
   { id: 'calendar', label: 'Google Calendar', description: 'Calendar view and upcoming events' },
   { id: 'news', label: 'News Feed', description: 'RSS feed reader' },
+  { id: 'bookmarks', label: 'Bookmarks', description: 'Quick links to your favorite sites' },
 ]
 
 const ACCENT_COLORS = [
