@@ -147,7 +147,7 @@ export default function HabitTracker({ session }) {
           style={{
             padding: '8px 16px',
             background: 'var(--accent)',
-            color: 'var(--text)',
+            color: '#fff',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
