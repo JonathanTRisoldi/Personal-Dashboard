@@ -260,7 +260,7 @@ export default function Dashboard({ session }) {
                     <DraggableWidget key="bookmarks" id="bookmarks" title="Bookmarks" defaultOpen={!isMobile} {...widgetProps}>
                       <Bookmarks session={session} />
                     </DraggableWidget>
-                  )     
+                  ),     
                 }
                 return widgets[id]
               })}
