@@ -57,7 +57,7 @@ export default function Journal({ session }) {
             style={{
               padding: '6px 14px',
               background: view === 'write' ? 'var(--accent)' : '#0f1117',
-              color: '#fff',
+              color: 'var(--text)',
               border: 'none',
               borderRadius: '6px',
               cursor: 'pointer',
@@ -71,7 +71,7 @@ export default function Journal({ session }) {
             style={{
               padding: '6px 14px',
               background: view === 'entries' ? 'var(--accent)' : '#0f1117',
-              color: '#fff',
+              color: 'var(--text)',
               border: 'none',
               borderRadius: '6px',
               cursor: 'pointer',
@@ -99,7 +99,7 @@ export default function Journal({ session }) {
               background: 'var(--card-inner)',
               border: '1px solid var(--border)',
               borderRadius: '8px',
-              color: '#fff',
+              color: 'var(--text)',
               fontSize: '14px',
               resize: 'vertical',
               lineHeight: '1.6',
@@ -112,7 +112,7 @@ export default function Journal({ session }) {
               width: '100%',
               padding: '10px',
               background: 'var(--accent)',
-              color: '#fff',
+              color: 'var(--text)',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',
@@ -143,7 +143,7 @@ export default function Journal({ session }) {
                       border: selectedEntry?.id === entry.id ? '1px solid var(--accent)' : '1px solid transparent'
                     }}
                   >
-                    <p style={{ color: '#fff', fontSize: '12px', fontWeight: '500' }}>{formatShortDate(entry.created_at)}</p>
+                    <p style={{ color: 'var(--text)', fontSize: '12px', fontWeight: '500' }}>{formatShortDate(entry.created_at)}</p>
                     <p style={{ color: '#666', fontSize: '11px', marginTop: '2px', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
                       {entry.content.substring(0, 30)}...
                     </p>

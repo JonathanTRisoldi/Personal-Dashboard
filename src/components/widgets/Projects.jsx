@@ -132,7 +132,7 @@ export default function Projects({ session }) {
             background: 'var(--card-inner)',
             border: '1px solid var(--border)',
             borderRadius: '8px',
-            color: '#fff',
+            color: 'var(--text)',
             fontSize: '14px',
             marginBottom: '8px'
           }}
@@ -148,7 +148,7 @@ export default function Projects({ session }) {
             background: 'var(--card-inner)',
             border: '1px solid var(--border)',
             borderRadius: '8px',
-            color: '#fff',
+            color: 'var(--text)',
             fontSize: '14px',
             marginBottom: '8px'
           }}
@@ -159,7 +159,7 @@ export default function Projects({ session }) {
             width: '100%',
             padding: '8px',
             background: 'var(--accent)',
-            color: '#fff',
+            color: 'var(--text)',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
@@ -205,7 +205,7 @@ export default function Projects({ session }) {
                           background: 'var(--card)',
                           border: '1px solid var(--accent)',
                           borderRadius: '6px',
-                          color: '#fff',
+                          color: 'var(--text)',
                           fontSize: '14px',
                           marginBottom: '6px'
                         }}
@@ -221,7 +221,7 @@ export default function Projects({ session }) {
                           background: 'var(--card)',
                           border: '1px solid var(--border)',
                           borderRadius: '6px',
-                          color: '#fff',
+                          color: 'var(--text)',
                           fontSize: '13px',
                           marginBottom: '8px'
                         }}
@@ -233,7 +233,7 @@ export default function Projects({ session }) {
                             flex: 1,
                             padding: '6px',
                             background: 'var(--accent)',
-                            color: '#fff',
+                            color: 'var(--text)',
                             border: 'none',
                             borderRadius: '6px',
                             cursor: 'pointer',
@@ -248,7 +248,7 @@ export default function Projects({ session }) {
                             flex: 1,
                             padding: '6px',
                             background: '#2a2d3e',
-                            color: '#aaa',
+                            color: 'var(--text-muted)',
                             border: 'none',
                             borderRadius: '6px',
                             cursor: 'pointer',
@@ -262,7 +262,7 @@ export default function Projects({ session }) {
                   ) : (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ color: '#fff', fontSize: '14px', fontWeight: '500' }}>{project.title}</span>
+                        <span style={{ color: 'var(--text)', fontSize: '14px', fontWeight: '500' }}>{project.title}</span>
                         <div style={{ display: 'flex', gap: '6px' }}>
                           <button
                             onClick={(e) => startEditingProject(e, project)}
@@ -305,7 +305,7 @@ export default function Projects({ session }) {
 
           {selectedProject && (
             <div style={{ flex: 1, background: 'var(--card-inner)', borderRadius: '8px', padding: '16px' }}>
-              <h3 style={{ color: '#fff', fontSize: '15px', marginBottom: '12px' }}>{selectedProject.title}</h3>
+              <h3 style={{ color: 'var(--text)', fontSize: '15px', marginBottom: '12px' }}>{selectedProject.title}</h3>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
                 <input
                   type="text"
@@ -319,7 +319,7 @@ export default function Projects({ session }) {
                     background: 'var(--card)',
                     border: '1px solid var(--border)',
                     borderRadius: '6px',
-                    color: '#fff',
+                    color: 'var(--text)',
                     fontSize: '13px'
                   }}
                 />
@@ -328,7 +328,7 @@ export default function Projects({ session }) {
                   style={{
                     padding: '6px 12px',
                     background: 'var(--accent)',
-                    color: '#fff',
+                    color: 'var(--text)',
                     border: 'none',
                     borderRadius: '6px',
                     cursor: 'pointer',

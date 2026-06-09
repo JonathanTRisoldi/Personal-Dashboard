@@ -166,8 +166,8 @@ export default function Dashboard({ session }) {
                     width: isMobile ? '160px' : '250px'
                   }}
                 />
-                <button onClick={saveName} style={{ padding: '6px 14px', background: accentColor, color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>Save</button>
-                <button onClick={() => setEditingName(false)} style={{ padding: '6px 14px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px' }}>Cancel</button>
+                <button onClick={saveName} style={{ padding: '6px 14px', background: accentColor, color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>Save</button>
+                <button onClick={() => setEditingName(false)} style={{ padding: '6px 14px', background: '#2a2d3e', color: 'var(--text-muted)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px' }}>Cancel</button>
               </div>
             ) : (
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -183,7 +183,7 @@ export default function Dashboard({ session }) {
           {!isMobile && <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{session.user.email}</span>}
           <button
             onClick={() => setShowSettings(true)}
-            style={{ padding: '8px 16px', background: '#2a2d3e', color: '#aaa', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+            style={{ padding: '8px 16px', background: '#2a2d3e', color: 'var(--text-muted)', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
           >
             ⚙️ Settings
           </button>
@@ -230,11 +230,11 @@ export default function Dashboard({ session }) {
                     <DraggableWidget key="tasks-notes" id="tasks-notes" title="Tasks & Notes" defaultOpen={!isMobile} {...widgetProps}>
                       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px' }}>
                         <div>
-                          <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Tasks</h3>
+                          <h3 style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '12px' }}>Quick Tasks</h3>
                           <Tasks session={session} />
                         </div>
                         <div>
-                          <h3 style={{ color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Quick Notes</h3>
+                          <h3 style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '12px' }}>Quick Notes</h3>
                           <Notes session={session} />
                         </div>
                       </div>

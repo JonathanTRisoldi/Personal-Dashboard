@@ -28,7 +28,7 @@ function App() {
   }, [])
 
   if (loading) return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: 'var(--card-inner)', color: '#fff' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: 'var(--card-inner)', color: 'var(--text)' }}>
       Loading...
     </div>
   )

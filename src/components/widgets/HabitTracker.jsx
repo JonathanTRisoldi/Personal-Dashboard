@@ -138,7 +138,7 @@ export default function HabitTracker({ session }) {
             background: 'var(--card-inner)',
             border: '1px solid var(--border)',
             borderRadius: '8px',
-            color: '#fff',
+            color: 'var(--text)',
             fontSize: '14px'
           }}
         />
@@ -147,7 +147,7 @@ export default function HabitTracker({ session }) {
           style={{
             padding: '8px 16px',
             background: 'var(--accent)',
-            color: '#fff',
+            color: 'var(--text)',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
@@ -210,20 +210,20 @@ export default function HabitTracker({ session }) {
                             background: 'var(--card)',
                             border: '1px solid var(--accent)',
                             borderRadius: '6px',
-                            color: '#fff',
+                            color: 'var(--text)',
                             fontSize: '14px',
                             width: '150px'
                           }}
                         />
                         <button
                           onClick={() => saveEdit(habit.id)}
-                          style={{ padding: '4px 10px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                          style={{ padding: '4px 10px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
                         >
                           Save
                         </button>
                         <button
                           onClick={() => setEditingHabit(null)}
-                          style={{ padding: '4px 10px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                          style={{ padding: '4px 10px', background: '#2a2d3e', color: 'var(--text-muted)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
                         >
                           Cancel
                         </button>
@@ -242,12 +242,12 @@ export default function HabitTracker({ session }) {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{ textAlign: 'center' }}>
                       <div style={{ fontSize: '18px' }}>🔥</div>
-                      <div style={{ color: '#fff', fontSize: '13px', fontWeight: 'bold' }}>{streak}</div>
+                      <div style={{ color: 'var(--text)', fontSize: '13px', fontWeight: 'bold' }}>{streak}</div>
                       <div style={{ color: 'var(--text-dim)', fontSize: '10px' }}>streak</div>
                     </div>
                     <div style={{ textAlign: 'center' }}>
                       <div style={{ fontSize: '18px' }}>🏆</div>
-                      <div style={{ color: '#fff', fontSize: '13px', fontWeight: 'bold' }}>{bestStreak}</div>
+                      <div style={{ color: 'var(--text)', fontSize: '13px', fontWeight: 'bold' }}>{bestStreak}</div>
                       <div style={{ color: 'var(--text-dim)', fontSize: '10px' }}>best</div>
                     </div>
                     <button
@@ -282,8 +282,8 @@ export default function HabitTracker({ session }) {
                   ))}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
-                  <span style={{ color: '#444', fontSize: '10px' }}>30 days ago</span>
-                  <span style={{ color: '#444', fontSize: '10px' }}>today</span>
+                  <span style={{ color: 'var(--text-dim)', fontSize: '10px' }}>30 days ago</span>
+                  <span style={{ color: 'var(--text-dim)', fontSize: '10px' }}>today</span>
                 </div>
               </div>
             )

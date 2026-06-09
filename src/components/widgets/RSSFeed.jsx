@@ -121,7 +121,7 @@ export default function RSSFeed() {
                 background: 'var(--card)',
                 border: '1px solid var(--border)',
                 borderRadius: '6px',
-                color: '#fff',
+                color: 'var(--text)',
                 fontSize: '13px'
               }}
             />
@@ -137,7 +137,7 @@ export default function RSSFeed() {
                 background: 'var(--card)',
                 border: '1px solid var(--border)',
                 borderRadius: '6px',
-                color: '#fff',
+                color: 'var(--text)',
                 fontSize: '13px'
               }}
             />
@@ -146,7 +146,7 @@ export default function RSSFeed() {
               style={{
                 padding: '7px 16px',
                 background: 'var(--accent)',
-                color: '#fff',
+                color: 'var(--text)',
                 border: 'none',
                 borderRadius: '6px',
                 cursor: 'pointer',

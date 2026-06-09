@@ -159,7 +159,7 @@ export default function GoogleCalendar() {
     background: 'var(--card-inner)',
     border: '1px solid var(--border)',
     borderRadius: '6px',
-    color: '#fff',
+    color: 'var(--text)',
     fontSize: '13px',
     marginBottom: '8px'
   }
@@ -169,7 +169,7 @@ export default function GoogleCalendar() {
       <div style={{ textAlign: 'center', padding: '16px 0' }}>
         <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px' }}>Connect your Google Calendar to see upcoming events.</p>
         {error && <p style={{ color: '#ff4d4d', fontSize: '13px', marginBottom: '12px' }}>{error}</p>}
-        <button onClick={() => login()} style={{ padding: '10px 20px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', margin: '0 auto', display: 'block' }}>
+        <button onClick={() => login()} style={{ padding: '10px 20px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', margin: '0 auto', display: 'block' }}>
           Connect Google Calendar
         </button>
       </div>
@@ -187,7 +187,7 @@ export default function GoogleCalendar() {
       {/* Month Navigation */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
         <button onClick={prevMonth} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '18px' }}>‹</button>
-        <span style={{ color: '#fff', fontSize: '15px', fontWeight: '500' }}>
+        <span style={{ color: 'var(--text)', fontSize: '15px', fontWeight: '500' }}>
           {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
         </span>
         <button onClick={nextMonth} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '18px' }}>›</button>
@@ -230,7 +230,7 @@ export default function GoogleCalendar() {
       {/* Add Event Button */}
       <button
         onClick={() => setShowAddEvent(!showAddEvent)}
-        style={{ width: '100%', padding: '8px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', marginBottom: '12px' }}
+        style={{ width: '100%', padding: '8px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', marginBottom: '12px' }}
       >
         {showAddEvent ? 'Cancel' : '+ Add Event'}
       </button>
@@ -253,7 +253,7 @@ export default function GoogleCalendar() {
       {/* Edit Event Form */}
       {editingEvent && (
         <div style={{ background: 'var(--card-inner)', borderRadius: '8px', padding: '12px', marginBottom: '12px' }}>
-            <p style={{ color: '#aaa', fontSize: '12px', marginBottom: '8px' }}>Editing event</p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '12px', marginBottom: '8px' }}>Editing event</p>
             <input
                 type="text"
                 value={editingEvent.summary}
@@ -301,8 +301,8 @@ export default function GoogleCalendar() {
       </div>
     )}
     <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-      <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
-      <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '8px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Cancel</button>
+      <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
+      <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '8px', background: '#2a2d3e', color: 'var(--text-muted)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Cancel</button>
     </div>
   </div>
 )}

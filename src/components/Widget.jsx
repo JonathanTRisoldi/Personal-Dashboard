@@ -58,7 +58,7 @@ export default function Widget({ title, children, defaultOpen = true, dragHandle
           )}
           <h2
             onClick={() => setIsOpen(!isOpen)}
-            style={{ color: '#fff', fontSize: '18px', margin: 0, cursor: 'pointer', flex: 1 }}
+            style={{ color: 'var(--text)', fontSize: '18px', margin: 0, cursor: 'pointer', flex: 1 }}
           >
             {title}
           </h2>

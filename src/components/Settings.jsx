@@ -113,7 +113,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
     background: 'var(--card-inner)',
     border: '1px solid var(--border)',
     borderRadius: '8px',
-    color: '#fff',
+    color: 'var(--text)',
     fontSize: '14px'
   }
 
@@ -141,7 +141,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
       }}>
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px 24px 0 24px' }}>
-          <h2 style={{ color: '#fff', fontSize: '20px', margin: 0 }}>Settings</h2>
+          <h2 style={{ color: 'var(--text)', fontSize: '20px', margin: 0 }}>Settings</h2>
           <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '24px' }}>×</button>
         </div>
 
@@ -170,7 +170,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
               </div>
 
               <div style={{ marginBottom: '24px' }}>
-                <label style={{ display: 'block', color: '#aaa', fontSize: '14px', marginBottom: '8px' }}>Display Name</label>
+                <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '14px', marginBottom: '8px' }}>Display Name</label>
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <input
                     type="text"
@@ -181,7 +181,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                   <button
                     onClick={saveDisplayName}
                     disabled={savingName}
-                    style={{ padding: '10px 16px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+                    style={{ padding: '10px 16px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
                   >
                     {savingName ? 'Saving...' : 'Save'}
                   </button>
@@ -190,7 +190,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
 
               <button
                 onClick={onSignOut}
-                style={{ width: '100%', padding: '12px', background: '#2a2d3e', color: '#aaa', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', marginBottom: '16px' }}
+                style={{ width: '100%', padding: '12px', background: '#2a2d3e', color: 'var(--text-muted)', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', marginBottom: '16px' }}
               >
                 Sign Out
               </button>
@@ -220,10 +220,10 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                     />
                     {error && <p style={{ color: '#ff4d4d', fontSize: '13px', marginBottom: '8px' }}>{error}</p>}
                     <div style={{ display: 'flex', gap: '8px' }}>
-                      <button onClick={handleDeleteAccount} disabled={deleteLoading} style={{ flex: 1, padding: '10px', background: '#ff4d4d', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
+                      <button onClick={handleDeleteAccount} disabled={deleteLoading} style={{ flex: 1, padding: '10px', background: '#ff4d4d', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
                         {deleteLoading ? 'Deleting...' : 'Confirm Delete'}
                       </button>
-                      <button onClick={() => { setConfirmDelete(false); setConfirmText(''); setError(null) }} style={{ flex: 1, padding: '10px', background: '#2a2d3e', color: '#aaa', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
+                      <button onClick={() => { setConfirmDelete(false); setConfirmText(''); setError(null) }} style={{ flex: 1, padding: '10px', background: '#2a2d3e', color: 'var(--text-muted)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
                         Cancel
                       </button>
                     </div>
@@ -291,7 +291,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
           {activeTab === 'appearance' && (
             <div>
               <div style={{ marginBottom: '24px' }}>
-                <label style={{ display: 'block', color: '#aaa', fontSize: '14px', marginBottom: '12px' }}>Theme</label>
+                <label style={{ display: 'block', color: 'var(--text-muted)', fontSize: '14px', marginBottom: '12px' }}>Theme</label>
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <button
   onClick={() => onThemeChange('dark')}
@@ -299,7 +299,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
     flex: 1,
     padding: '12px',
     background: theme === 'dark' ? '#6c63ff' : '#1a1d2e',
-    color: '#fff',
+    color: 'var(--text)',
     border: theme === 'dark' ? '1px solid #6c63ff' : '1px solid #0f1117',
     borderRadius: '8px',
     cursor: 'pointer',
@@ -339,7 +339,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                         border: accentColor === color.value ? '3px solid var(--text)' : '3px solid transparent',
                         borderRadius: '8px',
                         cursor: 'pointer',
-                        color: '#fff',
+                        color: 'var(--text)',
                         fontSize: '12px',
                         fontWeight: '500',
                         opacity: accentColor === color.value ? 1 : 0.7

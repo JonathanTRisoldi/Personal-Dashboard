@@ -42,7 +42,7 @@ export default function ResetPassword() {
         maxWidth: '420px',
         boxShadow: '0 4px 24px rgba(0,0,0,0.4)'
       }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '8px', color: '#fff' }}>Reset Password</h1>
+        <h1 style={{ textAlign: 'center', marginBottom: '8px', color: 'var(--text)' }}>Reset Password</h1>
         <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '24px' }}>Enter your new password below.</p>
 
         {error && (
@@ -58,29 +58,29 @@ export default function ResetPassword() {
         )}
 
         <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '6px', color: '#aaa', fontSize: '14px' }}>New Password</label>
+          <label style={{ display: 'block', marginBottom: '6px', color: 'var(--text-muted)', fontSize: '14px' }}>New Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: '100%', padding: '10px 14px', background: 'var(--card-inner)', border: '1px solid var(--border)', borderRadius: '8px', color: '#fff', fontSize: '15px' }}
+            style={{ width: '100%', padding: '10px 14px', background: 'var(--card-inner)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text)', fontSize: '15px' }}
           />
         </div>
 
         <div style={{ marginBottom: '24px' }}>
-          <label style={{ display: 'block', marginBottom: '6px', color: '#aaa', fontSize: '14px' }}>Confirm Password</label>
+          <label style={{ display: 'block', marginBottom: '6px', color: 'var(--text-muted)', fontSize: '14px' }}>Confirm Password</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            style={{ width: '100%', padding: '10px 14px', background: 'var(--card-inner)', border: '1px solid var(--border)', borderRadius: '8px', color: '#fff', fontSize: '15px' }}
+            style={{ width: '100%', padding: '10px 14px', background: 'var(--card-inner)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text)', fontSize: '15px' }}
           />
         </div>
 
         <button
           onClick={handleReset}
           disabled={loading}
-          style={{ width: '100%', padding: '12px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', cursor: 'pointer' }}
+          style={{ width: '100%', padding: '12px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', fontSize: '16px', cursor: 'pointer' }}
         >
           {loading ? 'Please wait...' : 'Update Password'}
         </button>

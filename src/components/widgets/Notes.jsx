@@ -55,7 +55,7 @@ export default function Notes({ session }) {
             background: 'var(--card-inner)',
             border: '1px solid var(--border)',
             borderRadius: '8px',
-            color: '#fff',
+            color: 'var(--text)',
             fontSize: '14px',
             resize: 'vertical',
             marginBottom: '8px'
@@ -67,7 +67,7 @@ export default function Notes({ session }) {
             width: '100%',
             padding: '8px',
             background: 'var(--accent)',
-            color: '#fff',
+            color: 'var(--text)',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',

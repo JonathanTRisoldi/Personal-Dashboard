@@ -65,7 +65,7 @@ const addTask = async () => {
             background: 'var(--card-inner)',
             border: '1px solid var(--border)',
             borderRadius: '8px',
-            color: '#fff',
+            color: 'var(--text)',
             fontSize: '14px'
           }}
         />
@@ -74,7 +74,7 @@ const addTask = async () => {
           style={{
             padding: '8px 16px',
             background: 'var(--accent)',
-            color: '#fff',
+            color: 'var(--text)',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',

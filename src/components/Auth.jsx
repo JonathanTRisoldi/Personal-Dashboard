@@ -74,7 +74,7 @@ export default function Auth() {
     background: 'var(--card-inner)',
     border: '1px solid var(--border)',
     borderRadius: '8px',
-    color: '#fff',
+    color: 'var(--text)',
     fontSize: '15px',
     width: '100%'
   }
@@ -82,7 +82,7 @@ export default function Auth() {
   const labelStyle = {
     display: 'block',
     marginBottom: '6px',
-    color: '#aaa',
+    color: 'var(--text-muted)',
     fontSize: '14px'
   }
 
@@ -124,7 +124,7 @@ export default function Auth() {
         maxWidth: '420px',
         boxShadow: '0 4px 24px rgba(0,0,0,0.4)'
       }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '8px', color: '#fff' }}>NexusBase</h1>
+        <h1 style={{ textAlign: 'center', marginBottom: '8px', color: 'var(--text)' }}>NexusBase</h1>
         <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '16px' }}>
           {isReset ? 'Reset your password' : isLogin ? 'Welcome back!' : 'Create your account'}
         </p>
@@ -138,7 +138,7 @@ export default function Auth() {
             padding: '10px 14px',
             marginBottom: '16px',
             fontSize: '12px',
-            color: '#aaa',
+            color: 'var(--text-muted)',
             textAlign: 'center'
           }}>
             By signing up you agree to our use of your data to power your personal dashboard.
@@ -219,7 +219,7 @@ export default function Auth() {
             width: '100%',
             padding: '12px',
             background: 'var(--accent)',
-            color: '#fff',
+            color: 'var(--text)',
             border: 'none',
             borderRadius: '8px',
             fontSize: '16px',

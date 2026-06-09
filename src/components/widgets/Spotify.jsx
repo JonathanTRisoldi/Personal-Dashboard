@@ -163,7 +163,7 @@ export default function Spotify() {
           style={{
             padding: '10px 20px',
             background: '#1db954',
-            color: '#fff',
+            color: 'var(--text)',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
@@ -197,7 +197,7 @@ export default function Spotify() {
             )}
             <div style={{ flex: 1, overflow: 'hidden' }}>
               <p style={{
-                color: '#fff',
+                color: 'var(--text)',
                 fontSize: '14px',
                 fontWeight: '500',
                 whiteSpace: 'nowrap',
@@ -252,7 +252,7 @@ export default function Spotify() {
               style={{
                 background: '#1db954',
                 border: 'none',
-                color: '#fff',
+                color: 'var(--text)',
                 cursor: 'pointer',
                 fontSize: '20px',
                 width: '42px',

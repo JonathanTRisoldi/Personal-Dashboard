@@ -51,7 +51,7 @@ export default function DateTimeWeather() {
     }}>
       {/* Time & Date */}
       <div>
-        <div style={{ textAlign: 'center', fontSize: '40px', fontWeight: 'bold', color: '#fff', lineHeight: 1 }}>
+        <div style={{ textAlign: 'center', fontSize: '40px', fontWeight: 'bold', color: 'var(--text)', lineHeight: 1 }}>
           {formatTime(time)}
         </div>
         <div style={{ textAlign: 'center', fontSize: '14px', color: 'var(--text-muted)', marginTop: '6px' }}>
@@ -96,7 +96,7 @@ export default function DateTimeWeather() {
       <div style={{ textAlign: 'center' }}>
         {weather ? (
           <>
-            <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#fff' }}>
+            <div style={{ fontSize: '36px', fontWeight: 'bold', color: 'var(--text)' }}>
               {Math.round(weather.main.temp)}°F
             </div>
             <div style={{ fontSize: '14px', color: 'var(--text-muted)', textTransform: 'capitalize' }}>
