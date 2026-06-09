@@ -109,7 +109,7 @@ const addTask = async () => {
               <span style={{
                 flex: 1,
                 fontSize: '14px',
-                color: task.completed ? '#555' : '#e0e0e0',
+                color: task.completed ? 'var(--text-dim)' : 'var(--text)',
                 textDecoration: task.completed ? 'line-through' : 'none'
               }}>
                 {task.title}
