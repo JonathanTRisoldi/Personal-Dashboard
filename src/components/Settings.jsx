@@ -188,7 +188,16 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                   </button>
                 </div>
               </div>
-
+              <button
+                onClick={() => {
+                    localStorage.removeItem('left_order')
+                    localStorage.removeItem('right_order')
+                    window.location.reload()
+                }}
+                    style={{ width: '100%', padding: '12px', background: 'var(--card-inner)', color: 'var(--text-muted)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', marginBottom: '16px' }}
+              >
+                Reset Widget Order
+              </button>
               <button
                 onClick={onSignOut}
                 style={{ width: '100%', padding: '12px', background: '#2a2d3e', color: 'var(--text-muted)', border: '1px solid #3a3f5c', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', marginBottom: '16px' }}
