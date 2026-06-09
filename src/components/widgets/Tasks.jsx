@@ -74,7 +74,7 @@ const addTask = async () => {
           style={{
             padding: '8px 16px',
             background: 'var(--accent)',
-            color: #fff,
+            color: '#fff',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',

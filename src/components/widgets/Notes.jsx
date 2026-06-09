@@ -67,7 +67,7 @@ export default function Notes({ session }) {
             width: '100%',
             padding: '8px',
             background: 'var(--accent)',
-            color: 'var(--text)',
+            color: '#fff',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
