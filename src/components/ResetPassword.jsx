@@ -80,7 +80,7 @@ export default function ResetPassword() {
         <button
           onClick={handleReset}
           disabled={loading}
-          style={{ width: '100%', padding: '12px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', fontSize: '16px', cursor: 'pointer' }}
+          style={{ width: '100%', padding: '12px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', cursor: 'pointer' }}
         >
           {loading ? 'Please wait...' : 'Update Password'}
         </button>

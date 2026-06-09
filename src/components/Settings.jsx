@@ -181,7 +181,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                   <button
                     onClick={saveDisplayName}
                     disabled={savingName}
-                    style={{ padding: '10px 16px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
+                    style={{ padding: '10px 16px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}
                   >
                     {savingName ? 'Saving...' : 'Save'}
                   </button>
@@ -220,7 +220,7 @@ export default function Settings({ session, onClose, onSignOut, accentColor, onA
                     />
                     {error && <p style={{ color: '#ff4d4d', fontSize: '13px', marginBottom: '8px' }}>{error}</p>}
                     <div style={{ display: 'flex', gap: '8px' }}>
-                      <button onClick={handleDeleteAccount} disabled={deleteLoading} style={{ flex: 1, padding: '10px', background: '#ff4d4d', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
+                      <button onClick={handleDeleteAccount} disabled={deleteLoading} style={{ flex: 1, padding: '10px', background: '#ff4d4d', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
                         {deleteLoading ? 'Deleting...' : 'Confirm Delete'}
                       </button>
                       <button onClick={() => { setConfirmDelete(false); setConfirmText(''); setError(null) }} style={{ flex: 1, padding: '10px', background: '#2a2d3e', color: 'var(--text-muted)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>

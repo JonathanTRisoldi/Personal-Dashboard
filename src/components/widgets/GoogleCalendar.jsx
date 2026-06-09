@@ -169,7 +169,7 @@ export default function GoogleCalendar() {
       <div style={{ textAlign: 'center', padding: '16px 0' }}>
         <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginBottom: '16px' }}>Connect your Google Calendar to see upcoming events.</p>
         {error && <p style={{ color: '#ff4d4d', fontSize: '13px', marginBottom: '12px' }}>{error}</p>}
-        <button onClick={() => login()} style={{ padding: '10px 20px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', margin: '0 auto', display: 'block' }}>
+        <button onClick={() => login()} style={{ padding: '10px 20px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', margin: '0 auto', display: 'block' }}>
           Connect Google Calendar
         </button>
       </div>
@@ -230,7 +230,7 @@ export default function GoogleCalendar() {
       {/* Add Event Button */}
       <button
         onClick={() => setShowAddEvent(!showAddEvent)}
-        style={{ width: '100%', padding: '8px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', marginBottom: '12px' }}
+        style={{ width: '100%', padding: '8px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', marginBottom: '12px' }}
       >
         {showAddEvent ? 'Cancel' : '+ Add Event'}
       </button>
@@ -301,7 +301,7 @@ export default function GoogleCalendar() {
       </div>
     )}
     <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-      <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
+      <button onClick={updateEvent} style={{ flex: 1, padding: '8px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Save</button>
       <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '8px', background: '#2a2d3e', color: 'var(--text-muted)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Cancel</button>
     </div>
   </div>

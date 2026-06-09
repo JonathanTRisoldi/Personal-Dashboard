@@ -217,7 +217,7 @@ export default function HabitTracker({ session }) {
                         />
                         <button
                           onClick={() => saveEdit(habit.id)}
-                          style={{ padding: '4px 10px', background: 'var(--accent)', color: 'var(--text)', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                          style={{ padding: '4px 10px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
                         >
                           Save
                         </button>
