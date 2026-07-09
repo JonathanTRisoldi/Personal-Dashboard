@@ -45,6 +45,7 @@ const quotes = [
   { q: "If you need me I'll be in my room listening to sad music and eating crackers.", a: "Tina Belcher" },
   { q: "I'm not crying. I'm just sweating from my eyes.", a: "Tina Belcher" },
   { q: "Uhhhhh.", a: "Tina Belcher" },
+  { q: "Tell me every terrible thing you ever did, and let me love you anyway.", a: "Edgar Allan Poe"},
 ]
 
 export default quotes
